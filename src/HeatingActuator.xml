@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="../../Organization/knxprod-support/knx_project_20/knx-editor.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<KNX xmlns="http://knx.org/xml/project/20" xmlns:op="http://github.com/OpenKNX/OpenKNXproducer">
+
+  <op:config href="HeatingActuator.conf.xml" />
+
+  <op:ETS OpenKnxId="0xAF"
+    ApplicationNumber="0x02"
+    ApplicationVersion="0.12"
+    ReplacesVersions="0.11 0.10 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1 0.0"
+    ApplicationRevision="0"
+    ProductName="Schaltaktor"
+    ApplicationName="AB-HeatingActuator-Logic"
+    BuildSuffix="-dev"
+    BuildSuffixText=" (dev)"
+    OrderNumber="OpenKnxHeatingActuator"
+    BaggagesRootDir="A6/02"
+  />
+  <op:define prefix="BASE" ModuleType="10"
+             share="../lib/OGM-Common/src/Common.share.xml">
+    <op:verify File="../lib/OGM-Common/library.json" ModuleVersion="%BASE_VerifyVersion%" />
+  </op:define>
+
+  <op:define prefix="UCT"
+    share="../../OFM-ConfigTransfer/src/ConfigTransfer.share.xml"
+    noConfigTransfer="true"
+    ModuleType="99">
+    <op:verify File="../../OFM-ConfigTransfer/library.json" ModuleVersion="%UCT_VerifyVersion%" />
+  </op:define>
+
+  <op:define prefix="SWA"
+    share="../lib/OFM-HeatingActuator/src/HeatingActuatorModule.share.xml"
+    template="../lib/OFM-HeatingActuator/src/HeatingActuatorModule.templ.xml"
+    NumChannels="8"
+    KoSingleOffset="20"
+    KoOffset="350"
+    ModuleType="20">
+    <op:verify File="../lib/OFM-HeatingActuator/library.json" ModuleVersion="%SWA_VerifyVersion%" />
+  </op:define>
+
+  <op:define prefix="LOG"
+    share="../lib/OFM-LogicModule/src/Logikmodul.share.xml"
+    template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml"
+    NumChannels="1"
+    KoOffset="50"
+    ModuleType="10">
+    <op:verify File="../lib/OFM-LogicModule/library.json" ModuleVersion="%LOG_VerifyVersion%" />
+  </op:define>
+
+  <generate />
+</KNX>
