@@ -29,9 +29,10 @@
     #define OPENKNX_HTA_GPIO_COUNT 12
     #define OPENKNX_HTA_ONLEVEL HIGH
 
-    #define AB_HTA_I2C_WIRE Wire1
-    #define AB_HTA_I2C_SDA 6
-    #define AB_HTA_I2C_SCL 7
+    #define OPENKNX_GPIO_WIRE Wire1
+    #define OPENKNX_GPIO_SDA 6
+    #define OPENKNX_GPIO_SCL 7
+    #define OPENKNX_GPIO_CLOCK 400000
 
     #define AB_HTA_OUT_TCA1_ADDR 0x20
     #define AB_HTA_OUT_TCA2_ADDR 0x21
