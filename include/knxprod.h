@@ -17,6 +17,7 @@
 #define BASE_ModuleVersion 18
 #define UCT_ModuleVersion 2
 #define SWA_ModuleVersion 1
+#define HTA_ModuleVersion 1
 #define LOG_ModuleVersion 53
 // Parameter with single occurrence
 

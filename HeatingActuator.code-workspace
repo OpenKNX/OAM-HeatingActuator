@@ -1,0 +1,51 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../OFM-HeatingActuator"
+		},
+		{
+			"path": "../OFM-LogicModule"
+		},
+		{
+			"path": "../OFM-FileTransferModule"
+		},
+		{
+			"path": "../OGM-Common"
+		},
+		{
+			"path": "../knx"
+		},
+		{
+			"path": "../OFM-ConfigTransfer"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cstdint": "cpp",
+			"array": "cpp",
+			"chrono": "cpp",
+			"deque": "cpp",
+			"format": "cpp",
+			"forward_list": "cpp",
+			"initializer_list": "cpp",
+			"list": "cpp",
+			"ranges": "cpp",
+			"regex": "cpp",
+			"span": "cpp",
+			"valarray": "cpp",
+			"vector": "cpp",
+			"xhash": "cpp",
+			"xstring": "cpp",
+			"xtree": "cpp",
+			"xutility": "cpp",
+			"string": "cpp",
+			"unordered_map": "cpp",
+			"unordered_set": "cpp",
+			"string_view": "cpp",
+			"text_encoding": "cpp"
+		}
+	}
+}

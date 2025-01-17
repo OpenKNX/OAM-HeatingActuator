@@ -29,8 +29,11 @@
     #define OPENKNX_HTA_GPIO_COUNT 12
     #define OPENKNX_HTA_ONLEVEL HIGH
 
-    #define AB_HTA_OUT_TCA_WIRE Wire1
-    #define AB_HTA_OUT_TCA_ADDR 0x20
-    #define AB_HTA_OUT_TCA_SDA 6
-    #define AB_HTA_OUT_TCA_SCL 7
+    #define AB_HTA_I2C_WIRE Wire1
+    #define AB_HTA_I2C_SDA 6
+    #define AB_HTA_I2C_SCL 7
+
+    #define AB_HTA_OUT_TCA1_ADDR 0x20
+    #define AB_HTA_OUT_TCA2_ADDR 0x21
+    #define AB_HTA_CUR_INA_ADDR 0x40
 #endif

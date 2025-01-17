@@ -25,14 +25,14 @@
     <op:verify File="../../OFM-ConfigTransfer/library.json" ModuleVersion="%UCT_VerifyVersion%" />
   </op:define>
 
-  <op:define prefix="SWA"
+  <op:define prefix="HTA"
     share="../lib/OFM-HeatingActuator/src/HeatingActuatorModule.share.xml"
     template="../lib/OFM-HeatingActuator/src/HeatingActuatorModule.templ.xml"
     NumChannels="8"
     KoSingleOffset="20"
     KoOffset="350"
     ModuleType="20">
-    <op:verify File="../lib/OFM-HeatingActuator/library.json" ModuleVersion="%SWA_VerifyVersion%" />
+    <op:verify File="../lib/OFM-HeatingActuator/library.json" ModuleVersion="%HTA_VerifyVersion%" />
   </op:define>
 
   <op:define prefix="LOG"
