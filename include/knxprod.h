@@ -157,7 +157,7 @@
 // Zentralfunktion
 #define KoSWA_CentralFunction                     (knx.getGroupObject(SWA_KoCentralFunction))
 
-#define SWA_ChannelCount 8
+#define SWA_ChannelCount 12
 
 // Parameter per channel
 #define SWA_ParamBlockOffset 47
