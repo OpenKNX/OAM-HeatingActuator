@@ -50,7 +50,8 @@
 			"string_view": "cpp",
 			"text_encoding": "cpp",
 			"ios": "cpp",
-			"*.tcc": "cpp"
+			"*.tcc": "cpp",
+			"queue": "cpp"
 		}
 	}
 }
