@@ -10,9 +10,9 @@
                                              
 #define MAIN_OpenKnxId 0xAF
 #define MAIN_ApplicationNumber 2
-#define MAIN_ApplicationVersion 1
-#define MAIN_ParameterSize 4034
-#define MAIN_MaxKoNumber 421
+#define MAIN_ApplicationVersion 7
+#define MAIN_ParameterSize 4130
+#define MAIN_MaxKoNumber 577
 #define MAIN_OrderNumber "OpenKnxHeatingActuator"
 #define BASE_ModuleVersion 18
 #define UCT_ModuleVersion 2
@@ -160,84 +160,78 @@
 
 // Parameter per channel
 #define HTA_ParamBlockOffset 47
-#define HTA_ParamBlockSize 74
+#define HTA_ParamBlockSize 82
 #define HTA_ParamCalcIndex(index) (index + HTA_ParamBlockOffset + _channelIndex * HTA_ParamBlockSize)
 
 #define HTA_ChActive                             0      // 2 Bits, Bit 7-6
 #define     HTA_ChActiveMask 0xC0
 #define     HTA_ChActiveShift 6
-#define HTA_ChSyncSwitch                         0      // 1 Bit, Bit 5
-#define     HTA_ChSyncSwitchMask 0x20
-#define     HTA_ChSyncSwitchShift 5
-#define HTA_ChOperationMode                      0      // 1 Bit, Bit 4
-#define     HTA_ChOperationModeMask 0x10
+#define HTA_ChControlMode                        1      // 2 Bits, Bit 7-6
+#define     HTA_ChControlModeMask 0xC0
+#define     HTA_ChControlModeShift 6
+#define HTA_ChOperationMode                      1      // 2 Bits, Bit 5-4
+#define     HTA_ChOperationModeMask 0x30
 #define     HTA_ChOperationModeShift 4
-#define HTA_ChCentralFunction                    0      // 1 Bit, Bit 3
-#define     HTA_ChCentralFunctionMask 0x08
-#define     HTA_ChCentralFunctionShift 3
-#define HTA_ChStatusSend                         0      // 2 Bits, Bit 2-1
-#define     HTA_ChStatusSendMask 0x06
-#define     HTA_ChStatusSendShift 1
-#define HTA_ChStatusInverted                     0      // 1 Bit, Bit 0
-#define     HTA_ChStatusInvertedMask 0x01
-#define     HTA_ChStatusInvertedShift 0
-#define HTA_ChTurnOnDelayBase                    1      // 2 Bits, Bit 7-6
-#define     HTA_ChTurnOnDelayBaseMask 0xC0
-#define     HTA_ChTurnOnDelayBaseShift 6
-#define HTA_ChTurnOnDelayTime                    1      // 14 Bits, Bit 13-0
-#define     HTA_ChTurnOnDelayTimeMask 0x3FFF
-#define     HTA_ChTurnOnDelayTimeShift 0
-#define HTA_ChTurnOffDelayBase                   3      // 2 Bits, Bit 7-6
-#define     HTA_ChTurnOffDelayBaseMask 0xC0
-#define     HTA_ChTurnOffDelayBaseShift 6
-#define HTA_ChTurnOffDelayTime                   3      // 14 Bits, Bit 13-0
-#define     HTA_ChTurnOffDelayTimeMask 0x3FFF
-#define     HTA_ChTurnOffDelayTimeShift 0
-#define HTA_ChStatusCyclicBase                   5      // 2 Bits, Bit 7-6
-#define     HTA_ChStatusCyclicBaseMask 0xC0
-#define     HTA_ChStatusCyclicBaseShift 6
-#define HTA_ChStatusCyclicTime                   5      // 14 Bits, Bit 13-0
-#define     HTA_ChStatusCyclicTimeMask 0x3FFF
-#define     HTA_ChStatusCyclicTimeShift 0
-#define HTA_ChBehaviorLock                       7      // 2 Bits, Bit 7-6
-#define     HTA_ChBehaviorLockMask 0xC0
-#define     HTA_ChBehaviorLockShift 6
-#define HTA_ChBehaviorUnlock                     7      // 3 Bits, Bit 5-3
-#define     HTA_ChBehaviorUnlockMask 0x38
-#define     HTA_ChBehaviorUnlockShift 3
-#define HTA_ChBehaviorPowerLoss                  8      // 2 Bits, Bit 7-6
-#define     HTA_ChBehaviorPowerLossMask 0xC0
-#define     HTA_ChBehaviorPowerLossShift 6
-#define HTA_ChBehaviorPowerRegain                8      // 2 Bits, Bit 5-4
-#define     HTA_ChBehaviorPowerRegainMask 0x30
-#define     HTA_ChBehaviorPowerRegainShift 4
-#define HTA_ChStairLightActive                   9      // 1 Bit, Bit 7
-#define     HTA_ChStairLightActiveMask 0x80
-#define     HTA_ChStairLightActiveShift 7
-#define HTA_ChScenesActive                       9      // 1 Bit, Bit 6
-#define     HTA_ChScenesActiveMask 0x40
-#define     HTA_ChScenesActiveShift 6
-#define HTA_ChSceneLearn                         9      // 1 Bit, Bit 0
+#define HTA_ChHeatingProportional                2      // uint8_t
+#define HTA_ChHeatingResetTime                   3      // uint8_t
+#define HTA_ChCoolingProportional                4      // uint8_t
+#define HTA_ChCoolingResetTime                   5      // uint8_t
+#define HTA_ChHeatingTargetKomfort               7      // int8_t
+#define HTA_ChHeatingTargetStandby               8      // int8_t
+#define HTA_ChHeatingTargetNacht                 9      // int8_t
+#define HTA_ChHeatingTargetAntifreeze           10      // int8_t
+#define HTA_ChCoolingTargetKomfort              11      // int8_t
+#define HTA_ChCoolingTargetStandby              12      // int8_t
+#define HTA_ChCoolingTargetNacht                13      // int8_t
+#define HTA_ChCoolingTargetAntifreeze           14      // int8_t
+#define HTA_ChPriority                          15      // 1 Bit, Bit 7
+#define     HTA_ChPriorityMask 0x80
+#define     HTA_ChPriorityShift 7
+#define HTA_ChTargetValueResetOnOperationModeChange 15      // 1 Bit, Bit 6
+#define     HTA_ChTargetValueResetOnOperationModeChangeMask 0x40
+#define     HTA_ChTargetValueResetOnOperationModeChangeShift 6
+#define HTA_ChTargetValueShiftMax               16      // uint8_t
+#define HTA_ChTargetValueShift                  17      // 2 Bits, Bit 7-6
+#define     HTA_ChTargetValueShiftMask 0xC0
+#define     HTA_ChTargetValueShiftShift 6
+#define HTA_ChTargetValueShiftResetOnOperationModeChange 17      // 1 Bit, Bit 5
+#define     HTA_ChTargetValueShiftResetOnOperationModeChangeMask 0x20
+#define     HTA_ChTargetValueShiftResetOnOperationModeChangeShift 5
+#define HTA_ChTargetValueShiftResetOnNewTargetValue 17      // 1 Bit, Bit 4
+#define     HTA_ChTargetValueShiftResetOnNewTargetValueMask 0x10
+#define     HTA_ChTargetValueShiftResetOnNewTargetValueShift 4
+#define HTA_ChSetValueChangeSend                18      // 1 Bit, Bit 7
+#define     HTA_ChSetValueChangeSendMask 0x80
+#define     HTA_ChSetValueChangeSendShift 7
+#define HTA_ChTargetValueChangeSend             18      // 1 Bit, Bit 6
+#define     HTA_ChTargetValueChangeSendMask 0x40
+#define     HTA_ChTargetValueChangeSendShift 6
+#define HTA_ChSetValueCyclicBase                19      // 2 Bits, Bit 7-6
+#define     HTA_ChSetValueCyclicBaseMask 0xC0
+#define     HTA_ChSetValueCyclicBaseShift 6
+#define HTA_ChSetValueCyclicTime                19      // 14 Bits, Bit 13-0
+#define     HTA_ChSetValueCyclicTimeMask 0x3FFF
+#define     HTA_ChSetValueCyclicTimeShift 0
+#define HTA_ChTargetValueCyclicBase             21      // 2 Bits, Bit 7-6
+#define     HTA_ChTargetValueCyclicBaseMask 0xC0
+#define     HTA_ChTargetValueCyclicBaseShift 6
+#define HTA_ChTargetValueCyclicTime             21      // 14 Bits, Bit 13-0
+#define     HTA_ChTargetValueCyclicTimeMask 0x3FFF
+#define     HTA_ChTargetValueCyclicTimeShift 0
+#define HTA_ChEmergencyModeDelayBase            23      // 2 Bits, Bit 7-6
+#define     HTA_ChEmergencyModeDelayBaseMask 0xC0
+#define     HTA_ChEmergencyModeDelayBaseShift 6
+#define HTA_ChEmergencyModeDelayTime            23      // 14 Bits, Bit 13-0
+#define     HTA_ChEmergencyModeDelayTimeMask 0x3FFF
+#define     HTA_ChEmergencyModeDelayTimeShift 0
+#define HTA_ChEmergencyModeSetValueHeating      25      // uint8_t
+#define HTA_ChEmergencyModeSetValueCooling      26      // uint8_t
+#define HTA_ChScenesActive                      27      // 1 Bit, Bit 7
+#define     HTA_ChScenesActiveMask 0x80
+#define     HTA_ChScenesActiveShift 7
+#define HTA_ChSceneLearn                        27      // 1 Bit, Bit 0
 #define     HTA_ChSceneLearnMask 0x01
 #define     HTA_ChSceneLearnShift 0
-#define HTA_ChStairTimeBase                     10      // 2 Bits, Bit 7-6
-#define     HTA_ChStairTimeBaseMask 0xC0
-#define     HTA_ChStairTimeBaseShift 6
-#define HTA_ChStairTimeTime                     10      // 14 Bits, Bit 13-0
-#define     HTA_ChStairTimeTimeMask 0x3FFF
-#define     HTA_ChStairTimeTimeShift 0
-#define HTA_ChStairRetrigger                    12      // 1 Bit, Bit 7
-#define     HTA_ChStairRetriggerMask 0x80
-#define     HTA_ChStairRetriggerShift 7
-#define HTA_ChStairOff                          12      // 1 Bit, Bit 6
-#define     HTA_ChStairOffMask 0x40
-#define     HTA_ChStairOffShift 6
-#define HTA_ChStairBlinkBase                    13      // 2 Bits, Bit 7-6
-#define     HTA_ChStairBlinkBaseMask 0xC0
-#define     HTA_ChStairBlinkBaseShift 6
-#define HTA_ChStairBlinkTime                    13      // 14 Bits, Bit 13-0
-#define     HTA_ChStairBlinkTimeMask 0x3FFF
-#define     HTA_ChStairBlinkTimeShift 0
 #define HTA_ChSceneAActive                      58      // 1 Bit, Bit 7
 #define     HTA_ChSceneAActiveMask 0x80
 #define     HTA_ChSceneAActiveShift 7
@@ -294,67 +288,107 @@
 #define     HTA_ChSceneHBehaviorMask 0x60
 #define     HTA_ChSceneHBehaviorShift 5
 #define HTA_ChSceneHNumber                      73      // 8 Bits, Bit 7-0
+#define HTA_ChSceneIActive                      74      // 1 Bit, Bit 7
+#define     HTA_ChSceneIActiveMask 0x80
+#define     HTA_ChSceneIActiveShift 7
+#define HTA_ChSceneIBehavior                    74      // 2 Bits, Bit 6-5
+#define     HTA_ChSceneIBehaviorMask 0x60
+#define     HTA_ChSceneIBehaviorShift 5
+#define HTA_ChSceneINumber                      75      // 8 Bits, Bit 7-0
+#define HTA_ChSceneJActive                      76      // 1 Bit, Bit 7
+#define     HTA_ChSceneJActiveMask 0x80
+#define     HTA_ChSceneJActiveShift 7
+#define HTA_ChSceneJBehavior                    76      // 2 Bits, Bit 6-5
+#define     HTA_ChSceneJBehaviorMask 0x60
+#define     HTA_ChSceneJBehaviorShift 5
+#define HTA_ChSceneJNumber                      77      // 8 Bits, Bit 7-0
+#define HTA_ChSceneKActive                      78      // 1 Bit, Bit 7
+#define     HTA_ChSceneKActiveMask 0x80
+#define     HTA_ChSceneKActiveShift 7
+#define HTA_ChSceneKBehavior                    78      // 2 Bits, Bit 6-5
+#define     HTA_ChSceneKBehaviorMask 0x60
+#define     HTA_ChSceneKBehaviorShift 5
+#define HTA_ChSceneKNumber                      79      // 8 Bits, Bit 7-0
+#define HTA_ChSceneLActive                      80      // 1 Bit, Bit 7
+#define     HTA_ChSceneLActiveMask 0x80
+#define     HTA_ChSceneLActiveShift 7
+#define HTA_ChSceneLBehavior                    80      // 2 Bits, Bit 6-5
+#define     HTA_ChSceneLBehaviorMask 0x60
+#define     HTA_ChSceneLBehaviorShift 5
+#define HTA_ChSceneLNumber                      81      // 8 Bits, Bit 7-0
 
 // Kanalaktivität
 #define ParamHTA_ChActive                            ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChActive)) & HTA_ChActiveMask) >> HTA_ChActiveShift)
-// 
-#define ParamHTA_ChSyncSwitch                        ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSyncSwitch)) & HTA_ChSyncSwitchMask))
+// Regelungsart
+#define ParamHTA_ChControlMode                       ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChControlMode)) & HTA_ChControlModeMask) >> HTA_ChControlModeShift)
 // Betriebsmodus
-#define ParamHTA_ChOperationMode                     ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChOperationMode)) & HTA_ChOperationModeMask))
-// Zentralfunktion
-#define ParamHTA_ChCentralFunction                   ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChCentralFunction)) & HTA_ChCentralFunctionMask))
-// Status senden
-#define ParamHTA_ChStatusSend                        ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChStatusSend)) & HTA_ChStatusSendMask) >> HTA_ChStatusSendShift)
-// Zusätzlicher invertierter Status
-#define ParamHTA_ChStatusInverted                    ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChStatusInverted)) & HTA_ChStatusInvertedMask))
+#define ParamHTA_ChOperationMode                     ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChOperationMode)) & HTA_ChOperationModeMask) >> HTA_ChOperationModeShift)
+// Soll-/Ist-Differenz
+#define ParamHTA_ChHeatingProportional               (knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingProportional)))
+// Nachstellzeit
+#define ParamHTA_ChHeatingResetTime                  (knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingResetTime)))
+// Soll-/Ist-Differenz
+#define ParamHTA_ChCoolingProportional               (knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingProportional)))
+// Nachstellzeit
+#define ParamHTA_ChCoolingResetTime                  (knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingResetTime)))
+// Sollwert Komfort
+#define ParamHTA_ChHeatingTargetKomfort              ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingTargetKomfort)))
+// Sollwert Standby
+#define ParamHTA_ChHeatingTargetStandby              ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingTargetStandby)))
+// Sollwert Nacht
+#define ParamHTA_ChHeatingTargetNacht                ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingTargetNacht)))
+// Sollwert Frostschutz
+#define ParamHTA_ChHeatingTargetAntifreeze           ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingTargetAntifreeze)))
+// Sollwert Komfort
+#define ParamHTA_ChCoolingTargetKomfort              ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingTargetKomfort)))
+// Sollwert Standby
+#define ParamHTA_ChCoolingTargetStandby              ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingTargetStandby)))
+// Sollwert Nacht
+#define ParamHTA_ChCoolingTargetNacht                ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingTargetNacht)))
+// Sollwert Hitzeschutz
+#define ParamHTA_ChCoolingTargetAntifreeze           ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingTargetAntifreeze)))
+// Priorität
+#define ParamHTA_ChPriority                          ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChPriority)) & HTA_ChPriorityMask))
+// Sollwerte bei Betriebsmoduswechsel zurücksetzen
+#define ParamHTA_ChTargetValueResetOnOperationModeChange ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueResetOnOperationModeChange)) & HTA_ChTargetValueResetOnOperationModeChangeMask))
+// Maximale Sollwertverschiebung
+#define ParamHTA_ChTargetValueShiftMax               (knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftMax)))
+// Sollwertverschiebung Schritt
+#define ParamHTA_ChTargetValueShift                  ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShift)) & HTA_ChTargetValueShiftMask) >> HTA_ChTargetValueShiftShift)
+// Sollwertverschiebung bei Betriebsmoduswechsel zurücksetzen
+#define ParamHTA_ChTargetValueShiftResetOnOperationModeChange ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftResetOnOperationModeChange)) & HTA_ChTargetValueShiftResetOnOperationModeChangeMask))
+// Sollwertverschiebung bei neuem Sollwert
+#define ParamHTA_ChTargetValueShiftResetOnNewTargetValue ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftResetOnNewTargetValue)) & HTA_ChTargetValueShiftResetOnNewTargetValueMask))
+// Stellwertänderungen senden
+#define ParamHTA_ChSetValueChangeSend                ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSetValueChangeSend)) & HTA_ChSetValueChangeSendMask))
+// Sollwertänderungen senden
+#define ParamHTA_ChTargetValueChangeSend             ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueChangeSend)) & HTA_ChTargetValueChangeSendMask))
 // Zeitbasis
-#define ParamHTA_ChTurnOnDelayBase                   ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChTurnOnDelayBase)) & HTA_ChTurnOnDelayBaseMask) >> HTA_ChTurnOnDelayBaseShift)
+#define ParamHTA_ChSetValueCyclicBase                ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChSetValueCyclicBase)) & HTA_ChSetValueCyclicBaseMask) >> HTA_ChSetValueCyclicBaseShift)
 // Zeit
-#define ParamHTA_ChTurnOnDelayTime                   (knx.paramWord(HTA_ParamCalcIndex(HTA_ChTurnOnDelayTime)) & HTA_ChTurnOnDelayTimeMask)
+#define ParamHTA_ChSetValueCyclicTime                (knx.paramWord(HTA_ParamCalcIndex(HTA_ChSetValueCyclicTime)) & HTA_ChSetValueCyclicTimeMask)
 // Zeit (in Millisekunden)
-#define ParamHTA_ChTurnOnDelayTimeMS                 (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChTurnOnDelayTime))))
+#define ParamHTA_ChSetValueCyclicTimeMS              (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChSetValueCyclicTime))))
 // Zeitbasis
-#define ParamHTA_ChTurnOffDelayBase                  ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChTurnOffDelayBase)) & HTA_ChTurnOffDelayBaseMask) >> HTA_ChTurnOffDelayBaseShift)
+#define ParamHTA_ChTargetValueCyclicBase             ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueCyclicBase)) & HTA_ChTargetValueCyclicBaseMask) >> HTA_ChTargetValueCyclicBaseShift)
 // Zeit
-#define ParamHTA_ChTurnOffDelayTime                  (knx.paramWord(HTA_ParamCalcIndex(HTA_ChTurnOffDelayTime)) & HTA_ChTurnOffDelayTimeMask)
+#define ParamHTA_ChTargetValueCyclicTime             (knx.paramWord(HTA_ParamCalcIndex(HTA_ChTargetValueCyclicTime)) & HTA_ChTargetValueCyclicTimeMask)
 // Zeit (in Millisekunden)
-#define ParamHTA_ChTurnOffDelayTimeMS                (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChTurnOffDelayTime))))
+#define ParamHTA_ChTargetValueCyclicTimeMS           (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChTargetValueCyclicTime))))
 // Zeitbasis
-#define ParamHTA_ChStatusCyclicBase                  ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChStatusCyclicBase)) & HTA_ChStatusCyclicBaseMask) >> HTA_ChStatusCyclicBaseShift)
+#define ParamHTA_ChEmergencyModeDelayBase            ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeDelayBase)) & HTA_ChEmergencyModeDelayBaseMask) >> HTA_ChEmergencyModeDelayBaseShift)
 // Zeit
-#define ParamHTA_ChStatusCyclicTime                  (knx.paramWord(HTA_ParamCalcIndex(HTA_ChStatusCyclicTime)) & HTA_ChStatusCyclicTimeMask)
+#define ParamHTA_ChEmergencyModeDelayTime            (knx.paramWord(HTA_ParamCalcIndex(HTA_ChEmergencyModeDelayTime)) & HTA_ChEmergencyModeDelayTimeMask)
 // Zeit (in Millisekunden)
-#define ParamHTA_ChStatusCyclicTimeMS                (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChStatusCyclicTime))))
-// bei Sperren
-#define ParamHTA_ChBehaviorLock                      ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChBehaviorLock)) & HTA_ChBehaviorLockMask) >> HTA_ChBehaviorLockShift)
-// bei Entsperren
-#define ParamHTA_ChBehaviorUnlock                    ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChBehaviorUnlock)) & HTA_ChBehaviorUnlockMask) >> HTA_ChBehaviorUnlockShift)
-// bei Busspannungsverlust
-#define ParamHTA_ChBehaviorPowerLoss                 ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChBehaviorPowerLoss)) & HTA_ChBehaviorPowerLossMask) >> HTA_ChBehaviorPowerLossShift)
-// bei Busspannungswiederkehr
-#define ParamHTA_ChBehaviorPowerRegain               ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChBehaviorPowerRegain)) & HTA_ChBehaviorPowerRegainMask) >> HTA_ChBehaviorPowerRegainShift)
-// Treppenlicht aktivieren
-#define ParamHTA_ChStairLightActive                  ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChStairLightActive)) & HTA_ChStairLightActiveMask))
+#define ParamHTA_ChEmergencyModeDelayTimeMS          (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChEmergencyModeDelayTime))))
+// Stellwert Notbetrieb Heizen
+#define ParamHTA_ChEmergencyModeSetValueHeating      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeSetValueHeating)))
+// Stellwert Notbetrieb Kühlen
+#define ParamHTA_ChEmergencyModeSetValueCooling      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeSetValueCooling)))
 // Szenen aktivieren
 #define ParamHTA_ChScenesActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChScenesActive)) & HTA_ChScenesActiveMask))
 // Szene lernen
 #define ParamHTA_ChSceneLearn                        ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneLearn)) & HTA_ChSceneLearnMask))
-// Zeit für Treppenlicht
-#define ParamHTA_ChStairTimeBase                     ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChStairTimeBase)) & HTA_ChStairTimeBaseMask) >> HTA_ChStairTimeBaseShift)
-// Zeit für Treppenlicht
-#define ParamHTA_ChStairTimeTime                     (knx.paramWord(HTA_ParamCalcIndex(HTA_ChStairTimeTime)) & HTA_ChStairTimeTimeMask)
-// Zeit für Treppenlicht (in Millisekunden)
-#define ParamHTA_ChStairTimeTimeMS                   (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChStairTimeTime))))
-// Treppenlicht kann verlängert werden
-#define ParamHTA_ChStairRetrigger                    ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChStairRetrigger)) & HTA_ChStairRetriggerMask))
-// Treppenlicht kann ausgeschaltet werden
-#define ParamHTA_ChStairOff                          ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChStairOff)) & HTA_ChStairOffMask))
-// Treppenlicht blinkt im Rhythmus
-#define ParamHTA_ChStairBlinkBase                    ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChStairBlinkBase)) & HTA_ChStairBlinkBaseMask) >> HTA_ChStairBlinkBaseShift)
-// Treppenlicht blinkt im Rhythmus
-#define ParamHTA_ChStairBlinkTime                    (knx.paramWord(HTA_ParamCalcIndex(HTA_ChStairBlinkTime)) & HTA_ChStairBlinkTimeMask)
-// Treppenlicht blinkt im Rhythmus (in Millisekunden)
-#define ParamHTA_ChStairBlinkTimeMS                  (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChStairBlinkTime))))
 // Szene aktiv
 #define ParamHTA_ChSceneAActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneAActive)) & HTA_ChSceneAActiveMask))
 // Szene Verhalten
@@ -403,283 +437,346 @@
 #define ParamHTA_ChSceneHBehavior                    ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneHBehavior)) & HTA_ChSceneHBehaviorMask) >> HTA_ChSceneHBehaviorShift)
 // Szene Nummer
 #define ParamHTA_ChSceneHNumber                      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneHNumber)))
+// Szene aktiv
+#define ParamHTA_ChSceneIActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneIActive)) & HTA_ChSceneIActiveMask))
+// Szene Verhalten
+#define ParamHTA_ChSceneIBehavior                    ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneIBehavior)) & HTA_ChSceneIBehaviorMask) >> HTA_ChSceneIBehaviorShift)
+// Szene Nummer
+#define ParamHTA_ChSceneINumber                      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneINumber)))
+// Szene aktiv
+#define ParamHTA_ChSceneJActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneJActive)) & HTA_ChSceneJActiveMask))
+// Szene Verhalten
+#define ParamHTA_ChSceneJBehavior                    ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneJBehavior)) & HTA_ChSceneJBehaviorMask) >> HTA_ChSceneJBehaviorShift)
+// Szene Nummer
+#define ParamHTA_ChSceneJNumber                      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneJNumber)))
+// Szene aktiv
+#define ParamHTA_ChSceneKActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneKActive)) & HTA_ChSceneKActiveMask))
+// Szene Verhalten
+#define ParamHTA_ChSceneKBehavior                    ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneKBehavior)) & HTA_ChSceneKBehaviorMask) >> HTA_ChSceneKBehaviorShift)
+// Szene Nummer
+#define ParamHTA_ChSceneKNumber                      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneKNumber)))
+// Szene aktiv
+#define ParamHTA_ChSceneLActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneLActive)) & HTA_ChSceneLActiveMask))
+// Szene Verhalten
+#define ParamHTA_ChSceneLBehavior                    ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneLBehavior)) & HTA_ChSceneLBehaviorMask) >> HTA_ChSceneLBehaviorShift)
+// Szene Nummer
+#define ParamHTA_ChSceneLNumber                      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneLNumber)))
 
 // deprecated
 #define HTA_KoOffset 350
 
 // Communication objects per channel (multiple occurrence)
 #define HTA_KoBlockOffset 350
-#define HTA_KoBlockSize 6
+#define HTA_KoBlockSize 19
 
 #define HTA_KoCalcNumber(index) (index + HTA_KoBlockOffset + _channelIndex * HTA_KoBlockSize)
 #define HTA_KoCalcIndex(number) ((number >= HTA_KoCalcNumber(0) && number < HTA_KoCalcNumber(HTA_KoBlockSize)) ? (number - HTA_KoBlockOffset) % HTA_KoBlockSize : -1)
 #define HTA_KoCalcChannel(number) ((number >= HTA_KoBlockOffset && number < HTA_KoBlockOffset + HTA_ChannelCount * HTA_KoBlockSize) ? (number - HTA_KoBlockOffset) / HTA_KoBlockSize : -1)
 
-#define HTA_KoChSwitch 0
-#define HTA_KoChStatus 1
-#define HTA_KoChStatusInverted 2
-#define HTA_KoChLock 3
-#define HTA_KoChLockStatus 4
-#define HTA_KoChScene 5
+#define HTA_KoChSetValueInput 0
+#define HTA_KoChSetValueStatusHeating 1
+#define HTA_KoChSetValueStatusCooling 2
+#define HTA_KoChOperationModeInput 3
+#define HTA_KoChOperationModeInputComfort 4
+#define HTA_KoChOperationModeInputNight 5
+#define HTA_KoChOperationModeInputHeatFreezeProtect 6
+#define HTA_KoChOperationModeStatus 7
+#define HTA_KoChTemperatureInput 8
+#define HTA_KoChTargetValueInput 9
+#define HTA_KoChTargetValueStatus 10
+#define HTA_KoChSetValueShiftInput 11
+#define HTA_KoChSetValueShiftStep 12
+#define HTA_KoChSetValueShiftStatus 13
+#define HTA_KoChLockHeating 14
+#define HTA_KoChLockHeatingStatus 15
+#define HTA_KoChLockCooling 16
+#define HTA_KoChLockCoolingStatus 17
+#define HTA_KoChScene 18
 
 // 
-#define KoHTA_ChSwitch                            (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSwitch)))
+#define KoHTA_ChSetValueInput                     (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueInput)))
 // 
-#define KoHTA_ChStatus                            (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChStatus)))
+#define KoHTA_ChSetValueStatusHeating             (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueStatusHeating)))
 // 
-#define KoHTA_ChStatusInverted                    (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChStatusInverted)))
+#define KoHTA_ChSetValueStatusCooling             (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueStatusCooling)))
 // 
-#define KoHTA_ChLock                              (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLock)))
+#define KoHTA_ChOperationModeInput                (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeInput)))
 // 
-#define KoHTA_ChLockStatus                        (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockStatus)))
+#define KoHTA_ChOperationModeInputComfort         (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeInputComfort)))
+// 
+#define KoHTA_ChOperationModeInputNight           (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeInputNight)))
+// 
+#define KoHTA_ChOperationModeInputHeatFreezeProtect (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeInputHeatFreezeProtect)))
+// 
+#define KoHTA_ChOperationModeStatus               (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeStatus)))
+// 
+#define KoHTA_ChTemperatureInput                  (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTemperatureInput)))
+// 
+#define KoHTA_ChTargetValueInput                  (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetValueInput)))
+// 
+#define KoHTA_ChTargetValueStatus                 (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetValueStatus)))
+// 
+#define KoHTA_ChSetValueShiftInput                (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueShiftInput)))
+// 
+#define KoHTA_ChSetValueShiftStep                 (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueShiftStep)))
+// 
+#define KoHTA_ChSetValueShiftStatus               (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueShiftStatus)))
+// 
+#define KoHTA_ChLockHeating                       (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockHeating)))
+// 
+#define KoHTA_ChLockHeatingStatus                 (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockHeatingStatus)))
+// 
+#define KoHTA_ChLockCooling                       (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockCooling)))
+// 
+#define KoHTA_ChLockCoolingStatus                 (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockCoolingStatus)))
 // 
 #define KoHTA_ChScene                             (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChScene)))
 
-#define LOG_BuzzerInstalled                     935      // 1 Bit, Bit 7
+#define LOG_BuzzerInstalled                     1031      // 1 Bit, Bit 7
 #define     LOG_BuzzerInstalledMask 0x80
 #define     LOG_BuzzerInstalledShift 7
-#define LOG_LedInstalled                        935      // 1 Bit, Bit 6
+#define LOG_LedInstalled                        1031      // 1 Bit, Bit 6
 #define     LOG_LedInstalledMask 0x40
 #define     LOG_LedInstalledShift 6
-#define LOG_VacationKo                          935      // 1 Bit, Bit 5
+#define LOG_VacationKo                          1031      // 1 Bit, Bit 5
 #define     LOG_VacationKoMask 0x20
 #define     LOG_VacationKoShift 5
-#define LOG_HolidayKo                           935      // 1 Bit, Bit 4
+#define LOG_HolidayKo                           1031      // 1 Bit, Bit 4
 #define     LOG_HolidayKoMask 0x10
 #define     LOG_HolidayKoShift 4
-#define LOG_VacationRead                        935      // 1 Bit, Bit 3
+#define LOG_VacationRead                        1031      // 1 Bit, Bit 3
 #define     LOG_VacationReadMask 0x08
 #define     LOG_VacationReadShift 3
-#define LOG_HolidaySend                         935      // 1 Bit, Bit 2
+#define LOG_HolidaySend                         1031      // 1 Bit, Bit 2
 #define     LOG_HolidaySendMask 0x04
 #define     LOG_HolidaySendShift 2
-#define LOG_Neujahr                             936      // 1 Bit, Bit 7
+#define LOG_Neujahr                             1032      // 1 Bit, Bit 7
 #define     LOG_NeujahrMask 0x80
 #define     LOG_NeujahrShift 7
-#define LOG_DreiKoenige                         936      // 1 Bit, Bit 6
+#define LOG_DreiKoenige                         1032      // 1 Bit, Bit 6
 #define     LOG_DreiKoenigeMask 0x40
 #define     LOG_DreiKoenigeShift 6
-#define LOG_Weiberfastnacht                     936      // 1 Bit, Bit 5
+#define LOG_Weiberfastnacht                     1032      // 1 Bit, Bit 5
 #define     LOG_WeiberfastnachtMask 0x20
 #define     LOG_WeiberfastnachtShift 5
-#define LOG_Rosenmontag                         936      // 1 Bit, Bit 4
+#define LOG_Rosenmontag                         1032      // 1 Bit, Bit 4
 #define     LOG_RosenmontagMask 0x10
 #define     LOG_RosenmontagShift 4
-#define LOG_Fastnachtsdienstag                  936      // 1 Bit, Bit 3
+#define LOG_Fastnachtsdienstag                  1032      // 1 Bit, Bit 3
 #define     LOG_FastnachtsdienstagMask 0x08
 #define     LOG_FastnachtsdienstagShift 3
-#define LOG_Aschermittwoch                      936      // 1 Bit, Bit 2
+#define LOG_Aschermittwoch                      1032      // 1 Bit, Bit 2
 #define     LOG_AschermittwochMask 0x04
 #define     LOG_AschermittwochShift 2
-#define LOG_Frauentag                           936      // 1 Bit, Bit 1
+#define LOG_Frauentag                           1032      // 1 Bit, Bit 1
 #define     LOG_FrauentagMask 0x02
 #define     LOG_FrauentagShift 1
-#define LOG_Gruendonnerstag                     936      // 1 Bit, Bit 0
+#define LOG_Gruendonnerstag                     1032      // 1 Bit, Bit 0
 #define     LOG_GruendonnerstagMask 0x01
 #define     LOG_GruendonnerstagShift 0
-#define LOG_Karfreitag                          937      // 1 Bit, Bit 7
+#define LOG_Karfreitag                          1033      // 1 Bit, Bit 7
 #define     LOG_KarfreitagMask 0x80
 #define     LOG_KarfreitagShift 7
-#define LOG_Ostersonntag                        937      // 1 Bit, Bit 6
+#define LOG_Ostersonntag                        1033      // 1 Bit, Bit 6
 #define     LOG_OstersonntagMask 0x40
 #define     LOG_OstersonntagShift 6
-#define LOG_Ostermontag                         937      // 1 Bit, Bit 5
+#define LOG_Ostermontag                         1033      // 1 Bit, Bit 5
 #define     LOG_OstermontagMask 0x20
 #define     LOG_OstermontagShift 5
-#define LOG_TagDerArbeit                        937      // 1 Bit, Bit 4
+#define LOG_TagDerArbeit                        1033      // 1 Bit, Bit 4
 #define     LOG_TagDerArbeitMask 0x10
 #define     LOG_TagDerArbeitShift 4
-#define LOG_Himmelfahrt                         937      // 1 Bit, Bit 3
+#define LOG_Himmelfahrt                         1033      // 1 Bit, Bit 3
 #define     LOG_HimmelfahrtMask 0x08
 #define     LOG_HimmelfahrtShift 3
-#define LOG_Pfingstsonntag                      937      // 1 Bit, Bit 2
+#define LOG_Pfingstsonntag                      1033      // 1 Bit, Bit 2
 #define     LOG_PfingstsonntagMask 0x04
 #define     LOG_PfingstsonntagShift 2
-#define LOG_Pfingstmontag                       937      // 1 Bit, Bit 1
+#define LOG_Pfingstmontag                       1033      // 1 Bit, Bit 1
 #define     LOG_PfingstmontagMask 0x02
 #define     LOG_PfingstmontagShift 1
-#define LOG_Fronleichnam                        937      // 1 Bit, Bit 0
+#define LOG_Fronleichnam                        1033      // 1 Bit, Bit 0
 #define     LOG_FronleichnamMask 0x01
 #define     LOG_FronleichnamShift 0
-#define LOG_Friedensfest                        938      // 1 Bit, Bit 7
+#define LOG_Friedensfest                        1034      // 1 Bit, Bit 7
 #define     LOG_FriedensfestMask 0x80
 #define     LOG_FriedensfestShift 7
-#define LOG_MariaHimmelfahrt                    938      // 1 Bit, Bit 6
+#define LOG_MariaHimmelfahrt                    1034      // 1 Bit, Bit 6
 #define     LOG_MariaHimmelfahrtMask 0x40
 #define     LOG_MariaHimmelfahrtShift 6
-#define LOG_DeutscheEinheit                     938      // 1 Bit, Bit 5
+#define LOG_DeutscheEinheit                     1034      // 1 Bit, Bit 5
 #define     LOG_DeutscheEinheitMask 0x20
 #define     LOG_DeutscheEinheitShift 5
-#define LOG_Reformationstag                     938      // 1 Bit, Bit 4
+#define LOG_Reformationstag                     1034      // 1 Bit, Bit 4
 #define     LOG_ReformationstagMask 0x10
 #define     LOG_ReformationstagShift 4
-#define LOG_Allerheiligen                       938      // 1 Bit, Bit 3
+#define LOG_Allerheiligen                       1034      // 1 Bit, Bit 3
 #define     LOG_AllerheiligenMask 0x08
 #define     LOG_AllerheiligenShift 3
-#define LOG_BussBettag                          938      // 1 Bit, Bit 2
+#define LOG_BussBettag                          1034      // 1 Bit, Bit 2
 #define     LOG_BussBettagMask 0x04
 #define     LOG_BussBettagShift 2
-#define LOG_Advent1                             938      // 1 Bit, Bit 1
+#define LOG_Advent1                             1034      // 1 Bit, Bit 1
 #define     LOG_Advent1Mask 0x02
 #define     LOG_Advent1Shift 1
-#define LOG_Advent2                             938      // 1 Bit, Bit 0
+#define LOG_Advent2                             1034      // 1 Bit, Bit 0
 #define     LOG_Advent2Mask 0x01
 #define     LOG_Advent2Shift 0
-#define LOG_Advent3                             939      // 1 Bit, Bit 7
+#define LOG_Advent3                             1035      // 1 Bit, Bit 7
 #define     LOG_Advent3Mask 0x80
 #define     LOG_Advent3Shift 7
-#define LOG_Advent4                             939      // 1 Bit, Bit 6
+#define LOG_Advent4                             1035      // 1 Bit, Bit 6
 #define     LOG_Advent4Mask 0x40
 #define     LOG_Advent4Shift 6
-#define LOG_Heiligabend                         939      // 1 Bit, Bit 5
+#define LOG_Heiligabend                         1035      // 1 Bit, Bit 5
 #define     LOG_HeiligabendMask 0x20
 #define     LOG_HeiligabendShift 5
-#define LOG_Weihnachtstag1                      939      // 1 Bit, Bit 4
+#define LOG_Weihnachtstag1                      1035      // 1 Bit, Bit 4
 #define     LOG_Weihnachtstag1Mask 0x10
 #define     LOG_Weihnachtstag1Shift 4
-#define LOG_Weihnachtstag2                      939      // 1 Bit, Bit 3
+#define LOG_Weihnachtstag2                      1035      // 1 Bit, Bit 3
 #define     LOG_Weihnachtstag2Mask 0x08
 #define     LOG_Weihnachtstag2Shift 3
-#define LOG_Silvester                           939      // 1 Bit, Bit 2
+#define LOG_Silvester                           1035      // 1 Bit, Bit 2
 #define     LOG_SilvesterMask 0x04
 #define     LOG_SilvesterShift 2
-#define LOG_Nationalfeiertag                    939      // 1 Bit, Bit 1
+#define LOG_Nationalfeiertag                    1035      // 1 Bit, Bit 1
 #define     LOG_NationalfeiertagMask 0x02
 #define     LOG_NationalfeiertagShift 1
-#define LOG_MariaEmpfaengnis                    939      // 1 Bit, Bit 0
+#define LOG_MariaEmpfaengnis                    1035      // 1 Bit, Bit 0
 #define     LOG_MariaEmpfaengnisMask 0x01
 #define     LOG_MariaEmpfaengnisShift 0
-#define LOG_NationalfeiertagSchweiz             940      // 1 Bit, Bit 7
+#define LOG_NationalfeiertagSchweiz             1036      // 1 Bit, Bit 7
 #define     LOG_NationalfeiertagSchweizMask 0x80
 #define     LOG_NationalfeiertagSchweizShift 7
-#define LOG_Totensonntag                        940      // 1 Bit, Bit 6
+#define LOG_Totensonntag                        1036      // 1 Bit, Bit 6
 #define     LOG_TotensonntagMask 0x40
 #define     LOG_TotensonntagShift 6
-#define LOG_BuzzerSilent                        941      // uint16_t
-#define LOG_BuzzerNormal                        943      // uint16_t
-#define LOG_BuzzerLoud                          945      // uint16_t
-#define LOG_VisibleChannels                     947      // uint8_t
-#define LOG_LedMapping                          948      // 3 Bits, Bit 7-5
+#define LOG_BuzzerSilent                        1037      // uint16_t
+#define LOG_BuzzerNormal                        1039      // uint16_t
+#define LOG_BuzzerLoud                          1041      // uint16_t
+#define LOG_VisibleChannels                     1043      // uint8_t
+#define LOG_LedMapping                          1044      // 3 Bits, Bit 7-5
 #define     LOG_LedMappingMask 0xE0
 #define     LOG_LedMappingShift 5
-#define LOG_UserFormula1                        949      // char*, 99 Byte
-#define LOG_UserFormula1Active                  1048      // 1 Bit, Bit 7
+#define LOG_UserFormula1                        1045      // char*, 99 Byte
+#define LOG_UserFormula1Active                  1144      // 1 Bit, Bit 7
 #define     LOG_UserFormula1ActiveMask 0x80
 #define     LOG_UserFormula1ActiveShift 7
-#define LOG_UserFormula2                        1049      // char*, 99 Byte
-#define LOG_UserFormula2Active                  1148      // 1 Bit, Bit 7
+#define LOG_UserFormula2                        1145      // char*, 99 Byte
+#define LOG_UserFormula2Active                  1244      // 1 Bit, Bit 7
 #define     LOG_UserFormula2ActiveMask 0x80
 #define     LOG_UserFormula2ActiveShift 7
-#define LOG_UserFormula3                        1149      // char*, 99 Byte
-#define LOG_UserFormula3Active                  1248      // 1 Bit, Bit 7
+#define LOG_UserFormula3                        1245      // char*, 99 Byte
+#define LOG_UserFormula3Active                  1344      // 1 Bit, Bit 7
 #define     LOG_UserFormula3ActiveMask 0x80
 #define     LOG_UserFormula3ActiveShift 7
-#define LOG_UserFormula4                        1249      // char*, 99 Byte
-#define LOG_UserFormula4Active                  1348      // 1 Bit, Bit 7
+#define LOG_UserFormula4                        1345      // char*, 99 Byte
+#define LOG_UserFormula4Active                  1444      // 1 Bit, Bit 7
 #define     LOG_UserFormula4ActiveMask 0x80
 #define     LOG_UserFormula4ActiveShift 7
-#define LOG_UserFormula5                        1349      // char*, 99 Byte
-#define LOG_UserFormula5Active                  1448      // 1 Bit, Bit 7
+#define LOG_UserFormula5                        1445      // char*, 99 Byte
+#define LOG_UserFormula5Active                  1544      // 1 Bit, Bit 7
 #define     LOG_UserFormula5ActiveMask 0x80
 #define     LOG_UserFormula5ActiveShift 7
-#define LOG_UserFormula6                        1449      // char*, 99 Byte
-#define LOG_UserFormula6Active                  1548      // 1 Bit, Bit 7
+#define LOG_UserFormula6                        1545      // char*, 99 Byte
+#define LOG_UserFormula6Active                  1644      // 1 Bit, Bit 7
 #define     LOG_UserFormula6ActiveMask 0x80
 #define     LOG_UserFormula6ActiveShift 7
-#define LOG_UserFormula7                        1549      // char*, 99 Byte
-#define LOG_UserFormula7Active                  1648      // 1 Bit, Bit 7
+#define LOG_UserFormula7                        1645      // char*, 99 Byte
+#define LOG_UserFormula7Active                  1744      // 1 Bit, Bit 7
 #define     LOG_UserFormula7ActiveMask 0x80
 #define     LOG_UserFormula7ActiveShift 7
-#define LOG_UserFormula8                        1649      // char*, 99 Byte
-#define LOG_UserFormula8Active                  1748      // 1 Bit, Bit 7
+#define LOG_UserFormula8                        1745      // char*, 99 Byte
+#define LOG_UserFormula8Active                  1844      // 1 Bit, Bit 7
 #define     LOG_UserFormula8ActiveMask 0x80
 #define     LOG_UserFormula8ActiveShift 7
-#define LOG_UserFormula9                        1749      // char*, 99 Byte
-#define LOG_UserFormula9Active                  1848      // 1 Bit, Bit 7
+#define LOG_UserFormula9                        1845      // char*, 99 Byte
+#define LOG_UserFormula9Active                  1944      // 1 Bit, Bit 7
 #define     LOG_UserFormula9ActiveMask 0x80
 #define     LOG_UserFormula9ActiveShift 7
-#define LOG_UserFormula10                       1849      // char*, 99 Byte
-#define LOG_UserFormula10Active                 1948      // 1 Bit, Bit 7
+#define LOG_UserFormula10                       1945      // char*, 99 Byte
+#define LOG_UserFormula10Active                 2044      // 1 Bit, Bit 7
 #define     LOG_UserFormula10ActiveMask 0x80
 #define     LOG_UserFormula10ActiveShift 7
-#define LOG_UserFormula11                       1949      // char*, 99 Byte
-#define LOG_UserFormula11Active                 2048      // 1 Bit, Bit 7
+#define LOG_UserFormula11                       2045      // char*, 99 Byte
+#define LOG_UserFormula11Active                 2144      // 1 Bit, Bit 7
 #define     LOG_UserFormula11ActiveMask 0x80
 #define     LOG_UserFormula11ActiveShift 7
-#define LOG_UserFormula12                       2049      // char*, 99 Byte
-#define LOG_UserFormula12Active                 2148      // 1 Bit, Bit 7
+#define LOG_UserFormula12                       2145      // char*, 99 Byte
+#define LOG_UserFormula12Active                 2244      // 1 Bit, Bit 7
 #define     LOG_UserFormula12ActiveMask 0x80
 #define     LOG_UserFormula12ActiveShift 7
-#define LOG_UserFormula13                       2149      // char*, 99 Byte
-#define LOG_UserFormula13Active                 2248      // 1 Bit, Bit 7
+#define LOG_UserFormula13                       2245      // char*, 99 Byte
+#define LOG_UserFormula13Active                 2344      // 1 Bit, Bit 7
 #define     LOG_UserFormula13ActiveMask 0x80
 #define     LOG_UserFormula13ActiveShift 7
-#define LOG_UserFormula14                       2249      // char*, 99 Byte
-#define LOG_UserFormula14Active                 2348      // 1 Bit, Bit 7
+#define LOG_UserFormula14                       2345      // char*, 99 Byte
+#define LOG_UserFormula14Active                 2444      // 1 Bit, Bit 7
 #define     LOG_UserFormula14ActiveMask 0x80
 #define     LOG_UserFormula14ActiveShift 7
-#define LOG_UserFormula15                       2349      // char*, 99 Byte
-#define LOG_UserFormula15Active                 2448      // 1 Bit, Bit 7
+#define LOG_UserFormula15                       2445      // char*, 99 Byte
+#define LOG_UserFormula15Active                 2544      // 1 Bit, Bit 7
 #define     LOG_UserFormula15ActiveMask 0x80
 #define     LOG_UserFormula15ActiveShift 7
-#define LOG_UserFormula16                       2449      // char*, 99 Byte
-#define LOG_UserFormula16Active                 2548      // 1 Bit, Bit 7
+#define LOG_UserFormula16                       2545      // char*, 99 Byte
+#define LOG_UserFormula16Active                 2644      // 1 Bit, Bit 7
 #define     LOG_UserFormula16ActiveMask 0x80
 #define     LOG_UserFormula16ActiveShift 7
-#define LOG_UserFormula17                       2549      // char*, 99 Byte
-#define LOG_UserFormula17Active                 2648      // 1 Bit, Bit 7
+#define LOG_UserFormula17                       2645      // char*, 99 Byte
+#define LOG_UserFormula17Active                 2744      // 1 Bit, Bit 7
 #define     LOG_UserFormula17ActiveMask 0x80
 #define     LOG_UserFormula17ActiveShift 7
-#define LOG_UserFormula18                       2649      // char*, 99 Byte
-#define LOG_UserFormula18Active                 2748      // 1 Bit, Bit 7
+#define LOG_UserFormula18                       2745      // char*, 99 Byte
+#define LOG_UserFormula18Active                 2844      // 1 Bit, Bit 7
 #define     LOG_UserFormula18ActiveMask 0x80
 #define     LOG_UserFormula18ActiveShift 7
-#define LOG_UserFormula19                       2749      // char*, 99 Byte
-#define LOG_UserFormula19Active                 2848      // 1 Bit, Bit 7
+#define LOG_UserFormula19                       2845      // char*, 99 Byte
+#define LOG_UserFormula19Active                 2944      // 1 Bit, Bit 7
 #define     LOG_UserFormula19ActiveMask 0x80
 #define     LOG_UserFormula19ActiveShift 7
-#define LOG_UserFormula20                       2849      // char*, 99 Byte
-#define LOG_UserFormula20Active                 2948      // 1 Bit, Bit 7
+#define LOG_UserFormula20                       2945      // char*, 99 Byte
+#define LOG_UserFormula20Active                 3044      // 1 Bit, Bit 7
 #define     LOG_UserFormula20ActiveMask 0x80
 #define     LOG_UserFormula20ActiveShift 7
-#define LOG_UserFormula21                       2949      // char*, 99 Byte
-#define LOG_UserFormula21Active                 3048      // 1 Bit, Bit 7
+#define LOG_UserFormula21                       3045      // char*, 99 Byte
+#define LOG_UserFormula21Active                 3144      // 1 Bit, Bit 7
 #define     LOG_UserFormula21ActiveMask 0x80
 #define     LOG_UserFormula21ActiveShift 7
-#define LOG_UserFormula22                       3049      // char*, 99 Byte
-#define LOG_UserFormula22Active                 3148      // 1 Bit, Bit 7
+#define LOG_UserFormula22                       3145      // char*, 99 Byte
+#define LOG_UserFormula22Active                 3244      // 1 Bit, Bit 7
 #define     LOG_UserFormula22ActiveMask 0x80
 #define     LOG_UserFormula22ActiveShift 7
-#define LOG_UserFormula23                       3149      // char*, 99 Byte
-#define LOG_UserFormula23Active                 3248      // 1 Bit, Bit 7
+#define LOG_UserFormula23                       3245      // char*, 99 Byte
+#define LOG_UserFormula23Active                 3344      // 1 Bit, Bit 7
 #define     LOG_UserFormula23ActiveMask 0x80
 #define     LOG_UserFormula23ActiveShift 7
-#define LOG_UserFormula24                       3249      // char*, 99 Byte
-#define LOG_UserFormula24Active                 3348      // 1 Bit, Bit 7
+#define LOG_UserFormula24                       3345      // char*, 99 Byte
+#define LOG_UserFormula24Active                 3444      // 1 Bit, Bit 7
 #define     LOG_UserFormula24ActiveMask 0x80
 #define     LOG_UserFormula24ActiveShift 7
-#define LOG_UserFormula25                       3349      // char*, 99 Byte
-#define LOG_UserFormula25Active                 3448      // 1 Bit, Bit 7
+#define LOG_UserFormula25                       3445      // char*, 99 Byte
+#define LOG_UserFormula25Active                 3544      // 1 Bit, Bit 7
 #define     LOG_UserFormula25ActiveMask 0x80
 #define     LOG_UserFormula25ActiveShift 7
-#define LOG_UserFormula26                       3449      // char*, 99 Byte
-#define LOG_UserFormula26Active                 3548      // 1 Bit, Bit 7
+#define LOG_UserFormula26                       3545      // char*, 99 Byte
+#define LOG_UserFormula26Active                 3644      // 1 Bit, Bit 7
 #define     LOG_UserFormula26ActiveMask 0x80
 #define     LOG_UserFormula26ActiveShift 7
-#define LOG_UserFormula27                       3549      // char*, 99 Byte
-#define LOG_UserFormula27Active                 3648      // 1 Bit, Bit 7
+#define LOG_UserFormula27                       3645      // char*, 99 Byte
+#define LOG_UserFormula27Active                 3744      // 1 Bit, Bit 7
 #define     LOG_UserFormula27ActiveMask 0x80
 #define     LOG_UserFormula27ActiveShift 7
-#define LOG_UserFormula28                       3649      // char*, 99 Byte
-#define LOG_UserFormula28Active                 3748      // 1 Bit, Bit 7
+#define LOG_UserFormula28                       3745      // char*, 99 Byte
+#define LOG_UserFormula28Active                 3844      // 1 Bit, Bit 7
 #define     LOG_UserFormula28ActiveMask 0x80
 #define     LOG_UserFormula28ActiveShift 7
-#define LOG_UserFormula29                       3749      // char*, 99 Byte
-#define LOG_UserFormula29Active                 3848      // 1 Bit, Bit 7
+#define LOG_UserFormula29                       3845      // char*, 99 Byte
+#define LOG_UserFormula29Active                 3944      // 1 Bit, Bit 7
 #define     LOG_UserFormula29ActiveMask 0x80
 #define     LOG_UserFormula29ActiveShift 7
-#define LOG_UserFormula30                       3849      // char*, 99 Byte
-#define LOG_UserFormula30Active                 3948      // 1 Bit, Bit 7
+#define LOG_UserFormula30                       3945      // char*, 99 Byte
+#define LOG_UserFormula30Active                 4044      // 1 Bit, Bit 7
 #define     LOG_UserFormula30ActiveMask 0x80
 #define     LOG_UserFormula30ActiveShift 7
 
@@ -914,7 +1011,7 @@
 #define LOG_ChannelCount 1
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 3949
+#define LOG_ParamBlockOffset 4045
 #define LOG_ParamBlockSize 85
 #define LOG_ParamCalcIndex(index) (index + LOG_ParamBlockOffset + _channelIndex * LOG_ParamBlockSize)
 
@@ -2659,7 +2756,7 @@
 #define BASE_KommentarModuleModuleParamSize 0
 #define BASE_KommentarModuleSubmodulesParamSize 0
 #define BASE_KommentarModuleParamSize 0
-#define BASE_KommentarModuleParamOffset 4034
+#define BASE_KommentarModuleParamOffset 4130
 #define BASE_KommentarModuleCalcIndex(index, m1) (index + BASE_KommentarModuleParamOffset + _channelIndex * BASE_KommentarModuleCount * BASE_KommentarModuleParamSize + m1 * BASE_KommentarModuleParamSize)
 
 
