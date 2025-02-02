@@ -10,7 +10,7 @@
                                              
 #define MAIN_OpenKnxId 0xAF
 #define MAIN_ApplicationNumber 2
-#define MAIN_ApplicationVersion 11
+#define MAIN_ApplicationVersion 15
 #define MAIN_ParameterSize 4132
 #define MAIN_MaxKoNumber 613
 #define MAIN_OrderNumber "OpenKnxHeatingActuator"
@@ -195,67 +195,70 @@
 #define HTA_ChHeatingResetTime                   3      // uint8_t
 #define HTA_ChCoolingProportional                4      // uint8_t
 #define HTA_ChCoolingResetTime                   5      // uint8_t
-#define HTA_ChHeatingTargetKomfort               7      // int8_t
-#define HTA_ChHeatingTargetStandby               8      // int8_t
-#define HTA_ChHeatingTargetNight                 9      // int8_t
-#define HTA_ChHeatingTargetAntifreeze           10      // int8_t
-#define HTA_ChCoolingTargetKomfort              11      // int8_t
-#define HTA_ChCoolingTargetStandby              12      // int8_t
-#define HTA_ChCoolingTargetNight                13      // int8_t
-#define HTA_ChCoolingTargetAntifreeze           14      // int8_t
-#define HTA_ChPriority                          15      // 1 Bit, Bit 7
-#define     HTA_ChPriorityMask 0x80
-#define     HTA_ChPriorityShift 7
-#define HTA_ChTargetValueResetOnOperationModeChange 15      // 1 Bit, Bit 6
-#define     HTA_ChTargetValueResetOnOperationModeChangeMask 0x40
-#define     HTA_ChTargetValueResetOnOperationModeChangeShift 6
-#define HTA_ChTargetValueShiftMax               16      // uint8_t
-#define HTA_ChTargetValueShift                  17      // 2 Bits, Bit 7-6
-#define     HTA_ChTargetValueShiftMask 0xC0
-#define     HTA_ChTargetValueShiftShift 6
-#define HTA_ChTargetValueShiftResetOnOperationModeChange 17      // 1 Bit, Bit 5
-#define     HTA_ChTargetValueShiftResetOnOperationModeChangeMask 0x20
-#define     HTA_ChTargetValueShiftResetOnOperationModeChangeShift 5
-#define HTA_ChTargetValueShiftResetOnNewTargetValue 17      // 1 Bit, Bit 4
-#define     HTA_ChTargetValueShiftResetOnNewTargetValueMask 0x10
-#define     HTA_ChTargetValueShiftResetOnNewTargetValueShift 4
-#define HTA_ChTargetValueShiftApplyToKomfort    18      // 1 Bit, Bit 7
-#define     HTA_ChTargetValueShiftApplyToKomfortMask 0x80
-#define     HTA_ChTargetValueShiftApplyToKomfortShift 7
-#define HTA_ChTargetValueShiftApplyToStandby    18      // 1 Bit, Bit 6
-#define     HTA_ChTargetValueShiftApplyToStandbyMask 0x40
-#define     HTA_ChTargetValueShiftApplyToStandbyShift 6
-#define HTA_ChTargetValueShiftApplyToNight      18      // 1 Bit, Bit 5
-#define     HTA_ChTargetValueShiftApplyToNightMask 0x20
-#define     HTA_ChTargetValueShiftApplyToNightShift 5
-#define HTA_ChTargetValueShiftActionNight       18      // 1 Bit, Bit 4
-#define     HTA_ChTargetValueShiftActionNightMask 0x10
-#define     HTA_ChTargetValueShiftActionNightShift 4
-#define HTA_ChTargetValueShiftActionStandby     18      // 1 Bit, Bit 3
-#define     HTA_ChTargetValueShiftActionStandbyMask 0x08
-#define     HTA_ChTargetValueShiftActionStandbyShift 3
+#define HTA_ChTargetTempHeatingComfort           7      // int8_t
+#define HTA_ChTargetTempHeatingStandby           8      // int8_t
+#define HTA_ChTargetTempHeatingNight             9      // int8_t
+#define HTA_ChTargetTempHeatingProtect          10      // int8_t
+#define HTA_ChTargetTempCoolingComfort          11      // int8_t
+#define HTA_ChTargetTempCoolingStandby          12      // int8_t
+#define HTA_ChTargetTempCoolingNight            13      // int8_t
+#define HTA_ChTargetTempCoolingProtect          14      // int8_t
+#define HTA_ChHvacModePriority                  15      // 1 Bit, Bit 7
+#define     HTA_ChHvacModePriorityMask 0x80
+#define     HTA_ChHvacModePriorityShift 7
+#define HTA_ChTargetTempResetOnHvacModeChange   15      // 1 Bit, Bit 6
+#define     HTA_ChTargetTempResetOnHvacModeChangeMask 0x40
+#define     HTA_ChTargetTempResetOnHvacModeChangeShift 6
+#define HTA_ChTargetTempShiftMax                16      // uint8_t
+#define HTA_ChTargetTempShift                   17      // 2 Bits, Bit 7-6
+#define     HTA_ChTargetTempShiftMask 0xC0
+#define     HTA_ChTargetTempShiftShift 6
+#define HTA_ChTargetTempShiftResetOnHvacModeChange 17      // 1 Bit, Bit 5
+#define     HTA_ChTargetTempShiftResetOnHvacModeChangeMask 0x20
+#define     HTA_ChTargetTempShiftResetOnHvacModeChangeShift 5
+#define HTA_ChTargetTempShiftResetOnNewTargetTemp 17      // 1 Bit, Bit 4
+#define     HTA_ChTargetTempShiftResetOnNewTargetTempMask 0x10
+#define     HTA_ChTargetTempShiftResetOnNewTargetTempShift 4
+#define HTA_ChTargetTempShiftApplyToComfort     18      // 1 Bit, Bit 7
+#define     HTA_ChTargetTempShiftApplyToComfortMask 0x80
+#define     HTA_ChTargetTempShiftApplyToComfortShift 7
+#define HTA_ChTargetTempShiftApplyToStandby     18      // 1 Bit, Bit 6
+#define     HTA_ChTargetTempShiftApplyToStandbyMask 0x40
+#define     HTA_ChTargetTempShiftApplyToStandbyShift 6
+#define HTA_ChTargetTempShiftApplyToNight       18      // 1 Bit, Bit 5
+#define     HTA_ChTargetTempShiftApplyToNightMask 0x20
+#define     HTA_ChTargetTempShiftApplyToNightShift 5
+#define HTA_ChTargetTempShiftActionNight        18      // 1 Bit, Bit 4
+#define     HTA_ChTargetTempShiftActionNightMask 0x10
+#define     HTA_ChTargetTempShiftActionNightShift 4
+#define HTA_ChTargetTempShiftActionStandby      18      // 1 Bit, Bit 3
+#define     HTA_ChTargetTempShiftActionStandbyMask 0x08
+#define     HTA_ChTargetTempShiftActionStandbyShift 3
 #define HTA_ChSetValueChangeSend                19      // 1 Bit, Bit 7
 #define     HTA_ChSetValueChangeSendMask 0x80
 #define     HTA_ChSetValueChangeSendShift 7
-#define HTA_ChTargetValueChangeSend             19      // 1 Bit, Bit 6
-#define     HTA_ChTargetValueChangeSendMask 0x40
-#define     HTA_ChTargetValueChangeSendShift 6
+#define HTA_ChTargetTempChangeSend              19      // 1 Bit, Bit 6
+#define     HTA_ChTargetTempChangeSendMask 0x40
+#define     HTA_ChTargetTempChangeSendShift 6
+#define HTA_ChConsiderForMaxSetValue            19      // 1 Bit, Bit 0
+#define     HTA_ChConsiderForMaxSetValueMask 0x01
+#define     HTA_ChConsiderForMaxSetValueShift 0
 #define HTA_ChSetValueCyclicBase                20      // 2 Bits, Bit 7-6
 #define     HTA_ChSetValueCyclicBaseMask 0xC0
 #define     HTA_ChSetValueCyclicBaseShift 6
 #define HTA_ChSetValueCyclicTime                20      // 14 Bits, Bit 13-0
 #define     HTA_ChSetValueCyclicTimeMask 0x3FFF
 #define     HTA_ChSetValueCyclicTimeShift 0
-#define HTA_ChTargetValueCyclicBase             22      // 2 Bits, Bit 7-6
-#define     HTA_ChTargetValueCyclicBaseMask 0xC0
-#define     HTA_ChTargetValueCyclicBaseShift 6
-#define HTA_ChTargetValueCyclicTime             22      // 14 Bits, Bit 13-0
-#define     HTA_ChTargetValueCyclicTimeMask 0x3FFF
-#define     HTA_ChTargetValueCyclicTimeShift 0
+#define HTA_ChTargetTempCyclicBase              22      // 2 Bits, Bit 7-6
+#define     HTA_ChTargetTempCyclicBaseMask 0xC0
+#define     HTA_ChTargetTempCyclicBaseShift 6
+#define HTA_ChTargetTempCyclicTime              22      // 14 Bits, Bit 13-0
+#define     HTA_ChTargetTempCyclicTimeMask 0x3FFF
+#define     HTA_ChTargetTempCyclicTimeShift 0
 #define HTA_ChEnforcedPosition                  24      // 1 Bit, Bit 7
 #define     HTA_ChEnforcedPositionMask 0x80
 #define     HTA_ChEnforcedPositionShift 7
-#define HTA_ChEnforcedSetValueHeating           25      // uint8_t
+#define HTA_ChEnforcedSetValueHeatingOrExtern   25      // uint8_t
 #define HTA_ChEnforcedSetValueCooling           26      // uint8_t
 #define HTA_ChEmergencyMode                     27      // 1 Bit, Bit 7
 #define     HTA_ChEmergencyModeMask 0x80
@@ -266,7 +269,7 @@
 #define HTA_ChEmergencyModeDelayTime            28      // 14 Bits, Bit 13-0
 #define     HTA_ChEmergencyModeDelayTimeMask 0x3FFF
 #define     HTA_ChEmergencyModeDelayTimeShift 0
-#define HTA_ChEmergencyModeSetValueHeating      30      // uint8_t
+#define HTA_ChEmergencyModeSetValueHeatingOrExtern 30      // uint8_t
 #define HTA_ChEmergencyModeSetValueCooling      31      // uint8_t
 #define HTA_ChManualMode                        32      // 1 Bit, Bit 7
 #define     HTA_ChManualModeMask 0x80
@@ -291,7 +294,8 @@
 #define HTA_ChManualModeChangeToAutoTime        35      // 14 Bits, Bit 13-0
 #define     HTA_ChManualModeChangeToAutoTimeMask 0x3FFF
 #define     HTA_ChManualModeChangeToAutoTimeShift 0
-#define HTA_ChMaxCurrent                        36      // uint8_t
+#define HTA_ChMotorMaxCurrentClose              36      // uint8_t
+#define HTA_ChMotorMaxCurrentOpen               36      // uint8_t
 #define HTA_ChScenesActive                      37      // 1 Bit, Bit 7
 #define     HTA_ChScenesActiveMask 0x80
 #define     HTA_ChScenesActiveShift 7
@@ -398,47 +402,49 @@
 // Nachstellzeit
 #define ParamHTA_ChCoolingResetTime                  (knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingResetTime)))
 // Sollwert Komfort
-#define ParamHTA_ChHeatingTargetKomfort              ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingTargetKomfort)))
+#define ParamHTA_ChTargetTempHeatingComfort          ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempHeatingComfort)))
 // Sollwert Standby
-#define ParamHTA_ChHeatingTargetStandby              ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingTargetStandby)))
+#define ParamHTA_ChTargetTempHeatingStandby          ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempHeatingStandby)))
 // Sollwert Nacht
-#define ParamHTA_ChHeatingTargetNight                ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingTargetNight)))
+#define ParamHTA_ChTargetTempHeatingNight            ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempHeatingNight)))
 // Sollwert Frostschutz
-#define ParamHTA_ChHeatingTargetAntifreeze           ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChHeatingTargetAntifreeze)))
+#define ParamHTA_ChTargetTempHeatingProtect          ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempHeatingProtect)))
 // Sollwert Komfort
-#define ParamHTA_ChCoolingTargetKomfort              ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingTargetKomfort)))
+#define ParamHTA_ChTargetTempCoolingComfort          ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempCoolingComfort)))
 // Sollwert Standby
-#define ParamHTA_ChCoolingTargetStandby              ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingTargetStandby)))
+#define ParamHTA_ChTargetTempCoolingStandby          ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempCoolingStandby)))
 // Sollwert Nacht
-#define ParamHTA_ChCoolingTargetNight                ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingTargetNight)))
+#define ParamHTA_ChTargetTempCoolingNight            ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempCoolingNight)))
 // Sollwert Hitzeschutz
-#define ParamHTA_ChCoolingTargetAntifreeze           ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChCoolingTargetAntifreeze)))
-// Priorität
-#define ParamHTA_ChPriority                          ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChPriority)) & HTA_ChPriorityMask))
-// Sollwerte bei Betriebsmoduswechsel zurücksetzen
-#define ParamHTA_ChTargetValueResetOnOperationModeChange ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueResetOnOperationModeChange)) & HTA_ChTargetValueResetOnOperationModeChangeMask))
+#define ParamHTA_ChTargetTempCoolingProtect          ((int8_t)knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempCoolingProtect)))
+// HVAC-Modus Priorität
+#define ParamHTA_ChHvacModePriority                  ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChHvacModePriority)) & HTA_ChHvacModePriorityMask))
+// Sollwerte bei HVAC-Modus-Wechsel zurücksetzen
+#define ParamHTA_ChTargetTempResetOnHvacModeChange   ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempResetOnHvacModeChange)) & HTA_ChTargetTempResetOnHvacModeChangeMask))
 // Maximale Sollwertverschiebung
-#define ParamHTA_ChTargetValueShiftMax               (knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftMax)))
+#define ParamHTA_ChTargetTempShiftMax                (knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShiftMax)))
 // Sollwertverschiebung Schritt
-#define ParamHTA_ChTargetValueShift                  ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShift)) & HTA_ChTargetValueShiftMask) >> HTA_ChTargetValueShiftShift)
-// Sollwertverschiebung bei Betriebsmoduswechsel zurücksetzen
-#define ParamHTA_ChTargetValueShiftResetOnOperationModeChange ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftResetOnOperationModeChange)) & HTA_ChTargetValueShiftResetOnOperationModeChangeMask))
-// Sollwertverschiebung bei neuem Sollwert
-#define ParamHTA_ChTargetValueShiftResetOnNewTargetValue ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftResetOnNewTargetValue)) & HTA_ChTargetValueShiftResetOnNewTargetValueMask))
+#define ParamHTA_ChTargetTempShift                   ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShift)) & HTA_ChTargetTempShiftMask) >> HTA_ChTargetTempShiftShift)
+// Sollwertverschiebung bei HVAC-Modus-Wechsel zurücksetzen
+#define ParamHTA_ChTargetTempShiftResetOnHvacModeChange ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShiftResetOnHvacModeChange)) & HTA_ChTargetTempShiftResetOnHvacModeChangeMask))
+// Sollwertverschiebung bei neuem Sollwert zurücksetzen
+#define ParamHTA_ChTargetTempShiftResetOnNewTargetTemp ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShiftResetOnNewTargetTemp)) & HTA_ChTargetTempShiftResetOnNewTargetTempMask))
 // Komfort
-#define ParamHTA_ChTargetValueShiftApplyToKomfort    ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftApplyToKomfort)) & HTA_ChTargetValueShiftApplyToKomfortMask))
+#define ParamHTA_ChTargetTempShiftApplyToComfort     ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShiftApplyToComfort)) & HTA_ChTargetTempShiftApplyToComfortMask))
 // Standby
-#define ParamHTA_ChTargetValueShiftApplyToStandby    ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftApplyToStandby)) & HTA_ChTargetValueShiftApplyToStandbyMask))
+#define ParamHTA_ChTargetTempShiftApplyToStandby     ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShiftApplyToStandby)) & HTA_ChTargetTempShiftApplyToStandbyMask))
 // Night
-#define ParamHTA_ChTargetValueShiftApplyToNight      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftApplyToNight)) & HTA_ChTargetValueShiftApplyToNightMask))
+#define ParamHTA_ChTargetTempShiftApplyToNight       ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShiftApplyToNight)) & HTA_ChTargetTempShiftApplyToNightMask))
 // Aktion bei Verschiebung in Nacht
-#define ParamHTA_ChTargetValueShiftActionNight       ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftActionNight)) & HTA_ChTargetValueShiftActionNightMask))
+#define ParamHTA_ChTargetTempShiftActionNight        ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShiftActionNight)) & HTA_ChTargetTempShiftActionNightMask))
 // Aktion bei Verschiebung in Standby
-#define ParamHTA_ChTargetValueShiftActionStandby     ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueShiftActionStandby)) & HTA_ChTargetValueShiftActionStandbyMask))
+#define ParamHTA_ChTargetTempShiftActionStandby      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempShiftActionStandby)) & HTA_ChTargetTempShiftActionStandbyMask))
 // Stellwertänderungen senden
 #define ParamHTA_ChSetValueChangeSend                ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSetValueChangeSend)) & HTA_ChSetValueChangeSendMask))
 // Sollwertänderungen senden
-#define ParamHTA_ChTargetValueChangeSend             ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueChangeSend)) & HTA_ChTargetValueChangeSendMask))
+#define ParamHTA_ChTargetTempChangeSend              ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempChangeSend)) & HTA_ChTargetTempChangeSendMask))
+// Kanal bei max. Stellwert berücksichtigen
+#define ParamHTA_ChConsiderForMaxSetValue            ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChConsiderForMaxSetValue)) & HTA_ChConsiderForMaxSetValueMask))
 // Zeitbasis
 #define ParamHTA_ChSetValueCyclicBase                ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChSetValueCyclicBase)) & HTA_ChSetValueCyclicBaseMask) >> HTA_ChSetValueCyclicBaseShift)
 // Zeit
@@ -446,16 +452,16 @@
 // Zeit (in Millisekunden)
 #define ParamHTA_ChSetValueCyclicTimeMS              (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChSetValueCyclicTime))))
 // Zeitbasis
-#define ParamHTA_ChTargetValueCyclicBase             ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetValueCyclicBase)) & HTA_ChTargetValueCyclicBaseMask) >> HTA_ChTargetValueCyclicBaseShift)
+#define ParamHTA_ChTargetTempCyclicBase              ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChTargetTempCyclicBase)) & HTA_ChTargetTempCyclicBaseMask) >> HTA_ChTargetTempCyclicBaseShift)
 // Zeit
-#define ParamHTA_ChTargetValueCyclicTime             (knx.paramWord(HTA_ParamCalcIndex(HTA_ChTargetValueCyclicTime)) & HTA_ChTargetValueCyclicTimeMask)
+#define ParamHTA_ChTargetTempCyclicTime              (knx.paramWord(HTA_ParamCalcIndex(HTA_ChTargetTempCyclicTime)) & HTA_ChTargetTempCyclicTimeMask)
 // Zeit (in Millisekunden)
-#define ParamHTA_ChTargetValueCyclicTimeMS           (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChTargetValueCyclicTime))))
+#define ParamHTA_ChTargetTempCyclicTimeMS            (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChTargetTempCyclicTime))))
 // Zwangsstellung aktivieren
 #define ParamHTA_ChEnforcedPosition                  ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChEnforcedPosition)) & HTA_ChEnforcedPositionMask))
-// Zwangsstellung Heizen
-#define ParamHTA_ChEnforcedSetValueHeating           (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEnforcedSetValueHeating)))
-// Zwangsstellung Kühlen
+// Stellwert Zwangsstellung Heizen
+#define ParamHTA_ChEnforcedSetValueHeatingOrExtern   (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEnforcedSetValueHeatingOrExtern)))
+// Stellwert Zwangsstellung Kühlen
 #define ParamHTA_ChEnforcedSetValueCooling           (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEnforcedSetValueCooling)))
 // Notbetrieb aktivieren
 #define ParamHTA_ChEmergencyMode                     ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyMode)) & HTA_ChEmergencyModeMask))
@@ -466,7 +472,7 @@
 // Zeit (in Millisekunden)
 #define ParamHTA_ChEmergencyModeDelayTimeMS          (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChEmergencyModeDelayTime))))
 // Stellwert Notbetrieb Heizen
-#define ParamHTA_ChEmergencyModeSetValueHeating      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeSetValueHeating)))
+#define ParamHTA_ChEmergencyModeSetValueHeatingOrExtern (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeSetValueHeatingOrExtern)))
 // Stellwert Notbetrieb Kühlen
 #define ParamHTA_ChEmergencyModeSetValueCooling      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeSetValueCooling)))
 // Manueller Betrieb aktivieren
@@ -491,8 +497,10 @@
 #define ParamHTA_ChManualModeChangeToAutoTime        (knx.paramWord(HTA_ParamCalcIndex(HTA_ChManualModeChangeToAutoTime)) & HTA_ChManualModeChangeToAutoTimeMask)
 // Zeit (in Millisekunden)
 #define ParamHTA_ChManualModeChangeToAutoTimeMS      (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChManualModeChangeToAutoTime))))
-// Max. Stromstärke
-#define ParamHTA_ChMaxCurrent                        (knx.paramByte(HTA_ParamCalcIndex(HTA_ChMaxCurrent)))
+// Max. Stromstärke Schließen
+#define ParamHTA_ChMotorMaxCurrentClose              (knx.paramByte(HTA_ParamCalcIndex(HTA_ChMotorMaxCurrentClose)))
+// Max. Stromstärke Öffnen
+#define ParamHTA_ChMotorMaxCurrentOpen               (knx.paramByte(HTA_ParamCalcIndex(HTA_ChMotorMaxCurrentOpen)))
 // Szenen aktivieren
 #define ParamHTA_ChScenesActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChScenesActive)) & HTA_ChScenesActiveMask))
 // Szene lernen
@@ -584,17 +592,17 @@
 #define HTA_KoChSetValueInput 0
 #define HTA_KoChSetValueStatusHeating 1
 #define HTA_KoChSetValueStatusCooling 2
-#define HTA_KoChOperationModeInput 3
-#define HTA_KoChOperationModeInputComfort 4
-#define HTA_KoChOperationModeInputNight 5
-#define HTA_KoChOperationModeInputHeatFreezeProtect 6
-#define HTA_KoChOperationModeStatus 7
-#define HTA_KoChTemperatureInput 8
-#define HTA_KoChTargetValueInput 9
-#define HTA_KoChTargetValueStatus 10
-#define HTA_KoChSetValueShiftInput 11
-#define HTA_KoChSetValueShiftStep 12
-#define HTA_KoChSetValueShiftStatus 13
+#define HTA_KoChHvacModeInput 3
+#define HTA_KoChHvacModeInputComfort 4
+#define HTA_KoChHvacModeInputNight 5
+#define HTA_KoChHvacModeInputProtect 6
+#define HTA_KoChHvacModeStatus 7
+#define HTA_KoChRoomTempInput 8
+#define HTA_KoChTargetTempInput 9
+#define HTA_KoChTargetTempStatus 10
+#define HTA_KoChTargetTempShiftInput 11
+#define HTA_KoChTargetTempShiftStep 12
+#define HTA_KoChTargetTempShiftStatus 13
 #define HTA_KoChLockHeating 14
 #define HTA_KoChLockHeatingStatus 15
 #define HTA_KoChLockCooling 16
@@ -611,27 +619,27 @@
 // 
 #define KoHTA_ChSetValueStatusCooling             (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueStatusCooling)))
 // 
-#define KoHTA_ChOperationModeInput                (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeInput)))
+#define KoHTA_ChHvacModeInput                     (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChHvacModeInput)))
 // 
-#define KoHTA_ChOperationModeInputComfort         (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeInputComfort)))
+#define KoHTA_ChHvacModeInputComfort              (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChHvacModeInputComfort)))
 // 
-#define KoHTA_ChOperationModeInputNight           (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeInputNight)))
+#define KoHTA_ChHvacModeInputNight                (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChHvacModeInputNight)))
 // 
-#define KoHTA_ChOperationModeInputHeatFreezeProtect (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeInputHeatFreezeProtect)))
+#define KoHTA_ChHvacModeInputProtect              (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChHvacModeInputProtect)))
 // 
-#define KoHTA_ChOperationModeStatus               (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChOperationModeStatus)))
+#define KoHTA_ChHvacModeStatus                    (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChHvacModeStatus)))
 // 
-#define KoHTA_ChTemperatureInput                  (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTemperatureInput)))
+#define KoHTA_ChRoomTempInput                     (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChRoomTempInput)))
 // 
-#define KoHTA_ChTargetValueInput                  (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetValueInput)))
+#define KoHTA_ChTargetTempInput                   (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempInput)))
 // 
-#define KoHTA_ChTargetValueStatus                 (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetValueStatus)))
+#define KoHTA_ChTargetTempStatus                  (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempStatus)))
 // 
-#define KoHTA_ChSetValueShiftInput                (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueShiftInput)))
+#define KoHTA_ChTargetTempShiftInput              (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempShiftInput)))
 // 
-#define KoHTA_ChSetValueShiftStep                 (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueShiftStep)))
+#define KoHTA_ChTargetTempShiftStep               (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempShiftStep)))
 // 
-#define KoHTA_ChSetValueShiftStatus               (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueShiftStatus)))
+#define KoHTA_ChTargetTempShiftStatus             (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempShiftStatus)))
 // 
 #define KoHTA_ChLockHeating                       (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockHeating)))
 // 

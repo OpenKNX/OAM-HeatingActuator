@@ -10,4 +10,4 @@ Die Inbetriebnahme geht am einfachsten mit der [OpenKNX Toolbox](https://github.
 
 Aktuell ist folgende Hardware kompatibel:
 
-* [8-fach Schaltaktor im 6 TE Schaltschrankgehäuse](https://www.ab-smarthouse.com/produkt/openknx-schaltaktor-8-fach/)
+* [12-fach Heizungsaktor im 6 TE Schaltschrankgehäuse](https://www.ab-smarthouse.com/produkt/openknx-heizungsaktor-12-fach-6-te/)
