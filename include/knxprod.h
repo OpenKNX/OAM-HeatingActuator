@@ -10,7 +10,7 @@
                                              
 #define MAIN_OpenKnxId 0xAF
 #define MAIN_ApplicationNumber 6
-#define MAIN_ApplicationVersion 1
+#define MAIN_ApplicationVersion 2
 #define MAIN_ParameterSize 4318
 #define MAIN_MaxKoNumber 613
 #define MAIN_OrderNumber "OpenKnxHeatingActuator"
@@ -408,6 +408,14 @@
 #define HTA_ChScenesActive                      37      // 1 Bit, Bit 7
 #define     HTA_ChScenesActiveMask 0x80
 #define     HTA_ChScenesActiveShift 7
+#define HTA_ChHeatingPidP                       38      // uint16_t
+#define HTA_ChHeatingPidI                       40      // uint16_t
+#define HTA_ChHeatingPidD                       42      // uint16_t
+#define HTA_ChHeatingPidInterval                44      // uint16_t
+#define HTA_ChCoolingPidP                       46      // uint16_t
+#define HTA_ChCoolingPidI                       48      // uint16_t
+#define HTA_ChCoolingPidD                       50      // uint16_t
+#define HTA_ChCoolingPidInterval                52      // uint16_t
 #define HTA_ChSceneAActive                      58      // 1 Bit, Bit 7
 #define     HTA_ChSceneAActiveMask 0x80
 #define     HTA_ChSceneAActiveShift 7
@@ -767,6 +775,22 @@
 #define ParamHTA_ChMotorMaxCurrentOpen               (knx.paramByte(HTA_ParamCalcIndex(HTA_ChMotorMaxCurrentOpen)))
 // Szenen aktivieren
 #define ParamHTA_ChScenesActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChScenesActive)) & HTA_ChScenesActiveMask))
+// PID-Controller: P
+#define ParamHTA_ChHeatingPidP                       (knx.paramWord(HTA_ParamCalcIndex(HTA_ChHeatingPidP)))
+// PID-Controller: I
+#define ParamHTA_ChHeatingPidI                       (knx.paramWord(HTA_ParamCalcIndex(HTA_ChHeatingPidI)))
+// PID-Controller: D
+#define ParamHTA_ChHeatingPidD                       (knx.paramWord(HTA_ParamCalcIndex(HTA_ChHeatingPidD)))
+// PID-Controller: Interval
+#define ParamHTA_ChHeatingPidInterval                (knx.paramWord(HTA_ParamCalcIndex(HTA_ChHeatingPidInterval)))
+// PID-Controller: P
+#define ParamHTA_ChCoolingPidP                       (knx.paramWord(HTA_ParamCalcIndex(HTA_ChCoolingPidP)))
+// PID-Controller: I
+#define ParamHTA_ChCoolingPidI                       (knx.paramWord(HTA_ParamCalcIndex(HTA_ChCoolingPidI)))
+// PID-Controller: D
+#define ParamHTA_ChCoolingPidD                       (knx.paramWord(HTA_ParamCalcIndex(HTA_ChCoolingPidD)))
+// PID-Controller: Interval
+#define ParamHTA_ChCoolingPidInterval                (knx.paramWord(HTA_ParamCalcIndex(HTA_ChCoolingPidInterval)))
 // Szene aktiv
 #define ParamHTA_ChSceneAActive                      ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChSceneAActive)) & HTA_ChSceneAActiveMask))
 // HVAC-Modus ändern
