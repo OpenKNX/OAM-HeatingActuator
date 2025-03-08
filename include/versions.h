@@ -1,6 +1,6 @@
 #pragma once
 
-#define MAIN_Version "84c85c9"
+#define MAIN_Version "5d36980"
 #define KNX_Version "2.1.2+764900e"
 #define MODULE_LogicModule_Version "3.5.2+9a1cfe1"
 #define MODULE_LogicModule_Version_Major 3
@@ -12,7 +12,7 @@
 #define MODULE_Common_Version_Minor 3
 #define MODULE_Common_Version_Revision 0
 #define MODULE_Common_ETS 19
-#define MODULE_HeatingActuator_Version "0.1.0+456e5c1"
+#define MODULE_HeatingActuator_Version "0.1.0+d760c47"
 #define MODULE_HeatingActuator_Version_Major 0
 #define MODULE_HeatingActuator_Version_Minor 1
 #define MODULE_HeatingActuator_Version_Revision 0
