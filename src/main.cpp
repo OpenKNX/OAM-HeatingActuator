@@ -1,6 +1,7 @@
 #include "Logic.h"
 #include "HeatingActuatorModule.h"
 #include "FileTransferModule.h"
+#include "WireGateway.h"
 
 #ifdef OPENKNX_GPIO_NUM
 #include "GPIOModule.h"
@@ -17,11 +18,12 @@ void setup()
     openknx.addModule(1, openknxLogic);
     openknx.addModule(2, openknxHeatingActuatorModule);
     openknx.addModule(3, openknxFileTransferModule);
-
-#ifdef OPENKNX_GPIO_NUM
+    openknx.addModule(5, openknxWireGateway);
+    
+    #ifdef OPENKNX_GPIO_NUM
     openknx.addModule(4, openknxGPIOModule);
-#endif
-
+    #endif
+    
     openknx.setup();
 }
 

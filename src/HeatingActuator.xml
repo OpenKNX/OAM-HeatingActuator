@@ -41,6 +41,17 @@
     <op:verify File="../lib/OFM-HeatingActuator/library.json" ModuleVersion="%HTA_VerifyVersion%" />
   </op:define>
 
+  <op:define prefix="WIRE" 
+             share="../lib/OFM-OneWireModule/src/WireGateway.share.xml"
+             template="../lib/OFM-OneWireModule/src/WireGateway.templ.xml"
+             NumChannels="30" 
+             KoOffset="90"  
+             ModuleType="40" 
+             KoSingleOffset="15" >
+    <op:verify File="../lib/OFM-OneWireModule/library.json" ModuleVersion="%WIRE_VerifyVersion%" />
+  </op:define>
+
+
   <op:define prefix="LOG"
     share="../lib/OFM-LogicModule/src/Logikmodul.share.xml"
     template="../lib/OFM-LogicModule/src/Logikmodul.templ.xml"
