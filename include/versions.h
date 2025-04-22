@@ -1,18 +1,18 @@
 #pragma once
 
-#define MAIN_Version "e7813f7"
+#define MAIN_Version "37ae59d"
 #define KNX_Version "2.1.2+764900e"
 #define MODULE_LogicModule_Version "3.5.2+9a1cfe1"
 #define MODULE_LogicModule_Version_Major 3
 #define MODULE_LogicModule_Version_Minor 5
 #define MODULE_LogicModule_Version_Revision 2
 #define MODULE_LogicModule_ETS 53
-#define MODULE_Common_Version "1.2.0+9f24e6e"
+#define MODULE_Common_Version "1.3.0+786e10a"
 #define MODULE_Common_Version_Major 1
-#define MODULE_Common_Version_Minor 2
+#define MODULE_Common_Version_Minor 3
 #define MODULE_Common_Version_Revision 0
-#define MODULE_Common_ETS 18
-#define MODULE_HeatingActuator_Version "0.1.0+cc2a6d5"
+#define MODULE_Common_ETS 19
+#define MODULE_HeatingActuator_Version "0.1.0+3a4ee28"
 #define MODULE_HeatingActuator_Version_Major 0
 #define MODULE_HeatingActuator_Version_Minor 1
 #define MODULE_HeatingActuator_Version_Revision 0
@@ -32,7 +32,7 @@
 #define MODULE_OneWireModule_Version_Minor 0
 #define MODULE_OneWireModule_Version_Revision 0
 #define MODULE_OneWireModule_ETS 32
-#define MODULE_SensorDevices_Version "4.0.0+9e48dd8"
+#define MODULE_SensorDevices_Version "4.0.0+ca62b63"
 #define MODULE_SensorDevices_Version_Major 4
 #define MODULE_SensorDevices_Version_Minor 0
 #define MODULE_SensorDevices_Version_Revision 0

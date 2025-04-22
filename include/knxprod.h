@@ -10,11 +10,11 @@
                                              
 #define MAIN_OpenKnxId 0xAF
 #define MAIN_ApplicationNumber 6
-#define MAIN_ApplicationVersion 8
+#define MAIN_ApplicationVersion 10
 #define MAIN_ParameterSize 4983
-#define MAIN_MaxKoNumber 613
+#define MAIN_MaxKoNumber 625
 #define MAIN_OrderNumber "OpenKnxHeatingActuator"
-#define BASE_ModuleVersion 18
+#define BASE_ModuleVersion 19
 #define UCT_ModuleVersion 2
 #define HTA_ModuleVersion 1
 #define WIRE_ModuleVersion 32
@@ -72,6 +72,9 @@
 #define BASE_HeartbeatExtended                   14      // 1 Bit, Bit 4
 #define     BASE_HeartbeatExtendedMask 0x10
 #define     BASE_HeartbeatExtendedShift 4
+#define BASE_InternalTime                        14      // 1 Bit, Bit 3
+#define     BASE_InternalTimeMask 0x08
+#define     BASE_InternalTimeShift 3
 #define BASE_ManualSave                          14      // 3 Bits, Bit 2-0
 #define     BASE_ManualSaveMask 0x07
 #define     BASE_ManualSaveShift 0
@@ -118,6 +121,8 @@
 #define ParamBASE_ReadTimeDate                        ((bool)(knx.paramByte(BASE_ReadTimeDate) & BASE_ReadTimeDateMask))
 // Erweitertes "In Betrieb"
 #define ParamBASE_HeartbeatExtended                   ((bool)(knx.paramByte(BASE_HeartbeatExtended) & BASE_HeartbeatExtendedMask))
+// InternalTime
+#define ParamBASE_InternalTime                        ((bool)(knx.paramByte(BASE_InternalTime) & BASE_InternalTimeMask))
 // Manuelles speichern
 #define ParamBASE_ManualSave                          (knx.paramByte(BASE_ManualSave) & BASE_ManualSaveMask)
 // Zyklisches speichern
@@ -131,6 +136,7 @@
 #define BASE_KoDiagnose 7
 #define BASE_KoIsSummertime 10
 #define BASE_KoManualSave 11
+#define BASE_KoDateTime 12
 
 // In Betrieb
 #define KoBASE_Heartbeat                           (knx.getGroupObject(BASE_KoHeartbeat))
@@ -144,6 +150,8 @@
 #define KoBASE_IsSummertime                        (knx.getGroupObject(BASE_KoIsSummertime))
 // Speichern
 #define KoBASE_ManualSave                          (knx.getGroupObject(BASE_KoManualSave))
+// Uhrzeit/Datum
+#define KoBASE_DateTime                            (knx.getGroupObject(BASE_KoDateTime))
 
 
 
@@ -373,6 +381,9 @@
 #define HTA_ChEmergencyMode                     26      // 1 Bit, Bit 7
 #define     HTA_ChEmergencyModeMask 0x80
 #define     HTA_ChEmergencyModeShift 7
+#define HTA_ChEmergencyModeChangeSend           26      // 1 Bit, Bit 6
+#define     HTA_ChEmergencyModeChangeSendMask 0x40
+#define     HTA_ChEmergencyModeChangeSendShift 6
 #define HTA_ChEmergencyModeDelayBase            27      // 2 Bits, Bit 7-6
 #define     HTA_ChEmergencyModeDelayBaseMask 0xC0
 #define     HTA_ChEmergencyModeDelayBaseShift 6
@@ -381,42 +392,48 @@
 #define     HTA_ChEmergencyModeDelayTimeShift 0
 #define HTA_ChEmergencyModeSetValueHeatingOrExtern 29      // uint8_t
 #define HTA_ChEmergencyModeSetValueCooling      30      // uint8_t
-#define HTA_ChManualMode                        31      // 1 Bit, Bit 7
+#define HTA_ChEmergencyModeCyclicBase           31      // 2 Bits, Bit 7-6
+#define     HTA_ChEmergencyModeCyclicBaseMask 0xC0
+#define     HTA_ChEmergencyModeCyclicBaseShift 6
+#define HTA_ChEmergencyModeCyclicTime           31      // 14 Bits, Bit 13-0
+#define     HTA_ChEmergencyModeCyclicTimeMask 0x3FFF
+#define     HTA_ChEmergencyModeCyclicTimeShift 0
+#define HTA_ChManualMode                        33      // 1 Bit, Bit 7
 #define     HTA_ChManualModeMask 0x80
 #define     HTA_ChManualModeShift 7
-#define HTA_ChManualModeChangeSend              31      // 1 Bit, Bit 6
+#define HTA_ChManualModeChangeSend              33      // 1 Bit, Bit 6
 #define     HTA_ChManualModeChangeSendMask 0x40
 #define     HTA_ChManualModeChangeSendShift 6
-#define HTA_ChManualModeChangeToAuto            31      // 2 Bits, Bit 1-0
+#define HTA_ChManualModeChangeToAuto            33      // 2 Bits, Bit 1-0
 #define     HTA_ChManualModeChangeToAutoMask 0x03
 #define     HTA_ChManualModeChangeToAutoShift 0
-#define HTA_ChManualModeSetValueOff             32      // uint8_t
-#define HTA_ChManualModeSetValueOn              33      // uint8_t
-#define HTA_ChManualModeCyclicBase              34      // 2 Bits, Bit 7-6
+#define HTA_ChManualModeSetValueOff             34      // uint8_t
+#define HTA_ChManualModeSetValueOn              35      // uint8_t
+#define HTA_ChManualModeCyclicBase              36      // 2 Bits, Bit 7-6
 #define     HTA_ChManualModeCyclicBaseMask 0xC0
 #define     HTA_ChManualModeCyclicBaseShift 6
-#define HTA_ChManualModeCyclicTime              34      // 14 Bits, Bit 13-0
+#define HTA_ChManualModeCyclicTime              36      // 14 Bits, Bit 13-0
 #define     HTA_ChManualModeCyclicTimeMask 0x3FFF
 #define     HTA_ChManualModeCyclicTimeShift 0
-#define HTA_ChManualModeChangeToAutoBase        36      // 2 Bits, Bit 7-6
+#define HTA_ChManualModeChangeToAutoBase        38      // 2 Bits, Bit 7-6
 #define     HTA_ChManualModeChangeToAutoBaseMask 0xC0
 #define     HTA_ChManualModeChangeToAutoBaseShift 6
-#define HTA_ChManualModeChangeToAutoTime        36      // 14 Bits, Bit 13-0
+#define HTA_ChManualModeChangeToAutoTime        38      // 14 Bits, Bit 13-0
 #define     HTA_ChManualModeChangeToAutoTimeMask 0x3FFF
 #define     HTA_ChManualModeChangeToAutoTimeShift 0
-#define HTA_ChMotorMaxCurrentClose              38      // uint8_t
-#define HTA_ChMotorMaxCurrentOpen               39      // uint8_t
-#define HTA_ChScenesActive                      40      // 1 Bit, Bit 7
+#define HTA_ChMotorMaxCurrentClose              40      // uint8_t
+#define HTA_ChMotorMaxCurrentOpen               41      // uint8_t
+#define HTA_ChScenesActive                      42      // 1 Bit, Bit 7
 #define     HTA_ChScenesActiveMask 0x80
 #define     HTA_ChScenesActiveShift 7
-#define HTA_ChHeatingPidP                       41      // uint16_t
-#define HTA_ChHeatingPidI                       43      // uint16_t
-#define HTA_ChHeatingPidD                       45      // uint16_t
-#define HTA_ChHeatingPidInterval                47      // uint16_t
-#define HTA_ChCoolingPidP                       49      // uint16_t
-#define HTA_ChCoolingPidI                       51      // uint16_t
-#define HTA_ChCoolingPidD                       53      // uint16_t
-#define HTA_ChCoolingPidInterval                55      // uint16_t
+#define HTA_ChHeatingPidP                       43      // uint16_t
+#define HTA_ChHeatingPidI                       45      // uint16_t
+#define HTA_ChHeatingPidD                       47      // uint16_t
+#define HTA_ChHeatingPidInterval                49      // uint16_t
+#define HTA_ChCoolingPidP                       51      // uint16_t
+#define HTA_ChCoolingPidI                       53      // uint16_t
+#define HTA_ChCoolingPidD                       55      // uint16_t
+#define HTA_ChCoolingPidInterval                57      // uint16_t
 #define HTA_ChSceneAActive                      57      // 1 Bit, Bit 7
 #define     HTA_ChSceneAActiveMask 0x80
 #define     HTA_ChSceneAActiveShift 7
@@ -738,6 +755,8 @@
 #define ParamHTA_ChEnforcedSetValueCooling           (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEnforcedSetValueCooling)))
 // Notbetrieb aktivieren
 #define ParamHTA_ChEmergencyMode                     ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyMode)) & HTA_ChEmergencyModeMask))
+// Notbetrieb senden
+#define ParamHTA_ChEmergencyModeChangeSend           ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeChangeSend)) & HTA_ChEmergencyModeChangeSendMask))
 // Zeitbasis
 #define ParamHTA_ChEmergencyModeDelayBase            ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeDelayBase)) & HTA_ChEmergencyModeDelayBaseMask) >> HTA_ChEmergencyModeDelayBaseShift)
 // Zeit
@@ -748,9 +767,15 @@
 #define ParamHTA_ChEmergencyModeSetValueHeatingOrExtern (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeSetValueHeatingOrExtern)))
 // Stellwert Notbetrieb Kühlen
 #define ParamHTA_ChEmergencyModeSetValueCooling      (knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeSetValueCooling)))
-// Manueller Betrieb aktivieren
+// Zeitbasis
+#define ParamHTA_ChEmergencyModeCyclicBase           ((knx.paramByte(HTA_ParamCalcIndex(HTA_ChEmergencyModeCyclicBase)) & HTA_ChEmergencyModeCyclicBaseMask) >> HTA_ChEmergencyModeCyclicBaseShift)
+// Zeit
+#define ParamHTA_ChEmergencyModeCyclicTime           (knx.paramWord(HTA_ParamCalcIndex(HTA_ChEmergencyModeCyclicTime)) & HTA_ChEmergencyModeCyclicTimeMask)
+// Zeit (in Millisekunden)
+#define ParamHTA_ChEmergencyModeCyclicTimeMS         (paramDelay(knx.paramWord(HTA_ParamCalcIndex(HTA_ChEmergencyModeCyclicTime))))
+// Manueller Modus aktivieren
 #define ParamHTA_ChManualMode                        ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChManualMode)) & HTA_ChManualModeMask))
-// Manueller Betrieb senden
+// Manueller Modus senden
 #define ParamHTA_ChManualModeChangeSend              ((bool)(knx.paramByte(HTA_ParamCalcIndex(HTA_ChManualModeChangeSend)) & HTA_ChManualModeChangeSendMask))
 // Umschaltung auf Automatik
 #define ParamHTA_ChManualModeChangeToAuto            (knx.paramByte(HTA_ParamCalcIndex(HTA_ChManualModeChangeToAuto)) & HTA_ChManualModeChangeToAutoMask)
@@ -990,7 +1015,7 @@
 
 // Communication objects per channel (multiple occurrence)
 #define HTA_KoBlockOffset 350
-#define HTA_KoBlockSize 22
+#define HTA_KoBlockSize 23
 
 #define HTA_KoCalcNumber(index) (index + HTA_KoBlockOffset + _channelIndex * HTA_KoBlockSize)
 #define HTA_KoCalcIndex(number) ((number >= HTA_KoCalcNumber(0) && number < HTA_KoCalcNumber(HTA_KoBlockSize)) ? (number - HTA_KoBlockOffset) % HTA_KoBlockSize : -1)
@@ -1010,14 +1035,15 @@
 #define HTA_KoChTargetTempShiftInput 11
 #define HTA_KoChTargetTempShiftStep 12
 #define HTA_KoChTargetTempShiftStatus 13
-#define HTA_KoChLockHeating 14
-#define HTA_KoChLockHeatingStatus 15
-#define HTA_KoChLockCooling 16
-#define HTA_KoChLockCoolingStatus 17
+#define HTA_KoChTargetTempLockHeating 14
+#define HTA_KoChTargetTempLockHeatingStatus 15
+#define HTA_KoChTargetTempLockCooling 16
+#define HTA_KoChTargetTempLockCoolingStatus 17
 #define HTA_KoChEnforcedPosition 18
-#define HTA_KoChManualMode 19
-#define HTA_KoChManualModeStatus 20
-#define HTA_KoChScene 21
+#define HTA_KoChEmergencyModeStatus 19
+#define HTA_KoChManualMode 20
+#define HTA_KoChManualModeStatus 21
+#define HTA_KoChScene 22
 
 // 
 #define KoHTA_ChSetValueInput                     (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChSetValueInput)))
@@ -1048,15 +1074,17 @@
 // 
 #define KoHTA_ChTargetTempShiftStatus             (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempShiftStatus)))
 // 
-#define KoHTA_ChLockHeating                       (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockHeating)))
+#define KoHTA_ChTargetTempLockHeating             (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempLockHeating)))
 // 
-#define KoHTA_ChLockHeatingStatus                 (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockHeatingStatus)))
+#define KoHTA_ChTargetTempLockHeatingStatus       (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempLockHeatingStatus)))
 // 
-#define KoHTA_ChLockCooling                       (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockCooling)))
+#define KoHTA_ChTargetTempLockCooling             (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempLockCooling)))
 // 
-#define KoHTA_ChLockCoolingStatus                 (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChLockCoolingStatus)))
+#define KoHTA_ChTargetTempLockCoolingStatus       (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChTargetTempLockCoolingStatus)))
 // 
 #define KoHTA_ChEnforcedPosition                  (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChEnforcedPosition)))
+// 
+#define KoHTA_ChEmergencyModeStatus               (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChEmergencyModeStatus)))
 // 
 #define KoHTA_ChManualMode                        (knx.getGroupObject(HTA_KoCalcNumber(HTA_KoChManualMode)))
 // 
